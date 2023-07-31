@@ -1,6 +1,6 @@
 import React from 'react'
-import { TodayBody } from './TodayBody';
-import { WeekBody } from './WeekBody';
+import { TodayBody } from './Today/TodayBody';
+import { WeekBody } from './Week/WeekBody';
 
 interface TypePropsBodyWeather {
   content: number;

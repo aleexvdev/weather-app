@@ -1,4 +1,4 @@
-import { TabsData, WeeksData } from "../types/Type_Weather";
+import { HoursData, TabsData, WeeksData } from "../types/Type_Weather";
 
 export const weeks: WeeksData[] = [
   {
@@ -53,3 +53,50 @@ export const tabs: TabsData[] = [
     "title": "Week",
   }
 ]; 
+
+export const hours: HoursData[] = [
+  {
+    hour: "6:00"
+  },
+  {
+    hour: "9:00"
+  },
+  {
+    hour: "12:00"
+  },
+  {
+    hour: "15:00"
+  },
+  {
+    hour: "18:00"
+  },
+  {
+    hour: "21:00"
+  }
+];
+
+export const hours_justnow: HoursData[] = [
+  {
+    hour: "Just Now"
+  },
+  {
+    hour: "6:00"
+  },
+  {
+    hour: "9:00"
+  },
+  {
+    hour: "12:00"
+  },
+  {
+    hour: "15:00"
+  },
+  {
+    hour: "18:00"
+  },
+  {
+    hour: "21:00"
+  }
+];
+
+
