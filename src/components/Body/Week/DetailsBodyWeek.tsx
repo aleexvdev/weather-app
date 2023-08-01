@@ -13,18 +13,16 @@ export const DetailsBodyWeek = () => {
       <h2 className='py-4 text-xl'>Highlights of the Week</h2>
       <div className=''>
         <div className='flex flex-row items-center justify-between'>
-          <div className='h-[300px] w-2/5'>
+          <div className='w-2/5'>
             <div className='flex flex-row items-center justify-start'>
-              <div className='mt-2 gap-4 w-12'>
-                <div className='flex flex-col items-center justify-center gap-4'>
-                  {
-                    hours.map( hour => (
-                      <button key={hour.hour} className='text-sm bg-blue-700/80 w-12 px-2 py-1 rounded-lg'>{hour.hour}</button>
-                    ))
-                  }
-                </div>
+              <div className='flex flex-col items-center justify-center gap-4'>
+                {
+                  hours.map( hour => (
+                    <button key={hour.hour} className='text-sm bg-blue-700/80 w-12 px-2 py-1 rounded-lg'>{hour.hour}</button>
+                  ))
+                }
               </div>
-              <div className='w-full ml-3'>
+              <div className='w-full'>
                 <div className='flex flex-col items-center justify-center h-full'>
                   <h4 className='text-2xl py-5'>Friday, 28 Jul</h4>
                   <img src={Img} alt="" width={100} height={100} />
