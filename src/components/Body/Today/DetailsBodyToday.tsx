@@ -4,20 +4,32 @@ import { PrecipitationStatus } from '../../WeatherComponents/PrecipitationStatus
 import { VisibilityStatus } from '../../WeatherComponents/VisibilityStatus'
 import { HumidityStatus } from '../../WeatherComponents/HumidityStatus'
 import { SunriseSunsetStatus } from '../../WeatherComponents/SunriseSunsetStatus'
+import { TypeMainWProp, TypeRainWProp, TypeSnowWProp, TypeWeatherWProp, TypeWindWProp } from '../../../types/Type_Weather'
+import { AtmosPressure } from '../../WeatherComponents/AtmosPressure'
+import { RoomTemperature } from '../../WeatherComponents/RoomTemperature'
 
-export const DetailsBodyToday = () => {
+interface TypeDetailsWeather {
+  main: TypeMainWProp;
+  weather: TypeWeatherWProp;
+  wind: TypeWindWProp;
+  visibility: number;
+  rain: TypeRainWProp;
+  snow: TypeSnowWProp;
+}
+
+export const DetailsBodyToday = ( { main, weather, wind, visibility, rain, snow }: TypeDetailsWeather ) => {
   return (
     <div className='w-full'>
       <h2 className='py-3 text-xl'>Today's Highlights</h2>
       <div className='flex flex-row items-center justify-between flex-wrap py-2'>
-        <WindStatus />
-        <PrecipitationStatus />
-        <PrecipitationStatus />
+        <WindStatus props={wind} />
+        <PrecipitationStatus rain={rain} snow={snow} />
+        <AtmosPressure props={main} />
       </div>
       <div className='flex flex-row items-center justify-between flex-wrap py-2'>
-        <VisibilityStatus />
-        <HumidityStatus />
-        <SunriseSunsetStatus />
+        <VisibilityStatus props={visibility} />
+        <HumidityStatus props={main.humidity} />
+        <RoomTemperature props={main} />
       </div>
     </div>
   )

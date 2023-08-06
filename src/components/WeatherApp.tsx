@@ -4,8 +4,8 @@ import { BodyWeather } from './Body/BodyWeather'
 import { FormWeather } from './Form/FormWeather'
 import { ResultFormWeather } from './Form/ResultFormWeather'
 import { Footer } from './Footer/Footer'
-import { TypeFetchWeatherMain, TypeLocation } from '../types/Type_Weather'
-import { fetchWeatherData } from '../api/apiweather'
+import { TypeFetchWeather, TypeFetchWeatherMain, TypeForescastWeather, TypeLocation } from '../types/Type_Weather'
+import { fetchWeatherDataAll } from '../api/apiweather'
 
 const data: TypeLocation = {
   name: 'Huacho',
@@ -20,6 +20,8 @@ export const WeatherApp = () => {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const [cityData, setCityData] = useState<TypeLocation>(data);
   const [weatherData, setWeatherData] = useState<TypeFetchWeatherMain>();
+  const [currentWeather, setCurrentWeather] = useState<TypeFetchWeather>();
+  const [forescastWeather, setForescastWeather] = useState<TypeForescastWeather>();
 
   const handleTabChange = (index: number) => {
     setActiveTabIndex(index);
@@ -32,20 +34,23 @@ export const WeatherApp = () => {
   useEffect(() => {
     const { lat, lon } = cityData;
     const fetchData = async () => {
-      const results = await fetchWeatherData(lat, lon);
+      const response = await fetchWeatherDataAll(lat, lon);
+      if (response.status === 200) {
+        const { dt, timezone, weather, main, rain, snow } = response.data.current;
+        const { description, icon } = weather[0];
+        const { temp, feels_like } = main;
 
-      const { dt, timezone, weather, main } = results;
-      const { description, icon } = weather[0];
-      const { temp, feels_like } = main;
-
-      setWeatherData({
-        description,
-        temp,
-        feels_like,
-        dt,
-        timezone,
-        icon
-      });
+        setCurrentWeather(response.data.current);
+        setForescastWeather(response.data.forecast);
+        setWeatherData({
+          description,
+          temp,
+          feels_like,
+          dt,
+          timezone,
+          icon
+        });
+      }
     }
     fetchData();
   }, [cityData]);
@@ -63,7 +68,10 @@ export const WeatherApp = () => {
         <div className='w-[72%]'>
           <div className=' my-6 mx-5'>
             <HeaderWeather activeTabIndex={activeTabIndex} onTabChange={handleTabChange} />
-            <BodyWeather content={activeTabIndex} />
+            {
+              currentWeather && forescastWeather ? <BodyWeather content={activeTabIndex} currentWeather={currentWeather} forescastWeather={forescastWeather} /> : <div>loading</div>
+            }
+            
           </div>
         </div>
       </div>

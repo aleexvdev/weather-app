@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useEffect } from 'react'
 import { formatUnixTimestamp, kelvinToCelsius } from '../../utils/functions'
 import IconMostlyCloudy from '../../icons/IconMostlyCloudy'
 import { TypeResultsProps } from '../../types/Type_Weather'
@@ -6,10 +6,19 @@ import { IconWindStatus } from '../../icons/WindStatusIcons/IconWindStatus'
 
 export const ResultFormWeather = ( { weatherData }: TypeResultsProps ) => {
 
-  const feelsLike = useMemo(() => {
+  const [feelsLike, setFeelsLike] = useState<string>('')
+
+  /* const feelsLike = useMemo(() => {
     const temperature = weatherData?.feels_like || 0;
-    return kelvinToCelsius(temperature).toFixed(2);
+    return kelvinToCelsius(temperature).toFixed();
+  }, [weatherData]); */
+
+  useEffect(() => {
+    const temperature = weatherData?.feels_like || 0;
+    const feelsLike = kelvinToCelsius(temperature).toFixed(1);
+    setFeelsLike(feelsLike);
   }, [weatherData]);
+  
 
   const temp = useMemo(() => {
     const date = new Date();

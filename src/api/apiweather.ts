@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { TypeFetchWeather, TypeLocation } from '../types/Type_Weather';
+import { TypeFetchWeather, TypeForescastWeather, TypeLocation, TypeWeatherResponseData } from '../types/Type_Weather';
 // import { BASE_URL, API_KEY } from '../../env-config.js';
 
 const BASE_URL='http://api.openweathermap.org'
@@ -15,7 +15,7 @@ export const fetchLocations = async (searchCity: string, limit: number): Promise
   }
 }
 
-export const fetchWeatherData =async (lat: number, lon: number): Promise<TypeFetchWeather> => {
+export const fetchWeatherData = async (lat: number, lon: number): Promise<TypeFetchWeather> => {
   try {
     const url = `${BASE_URL}/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
     const response: AxiosResponse<TypeFetchWeather> = await axios.post(url);
@@ -24,3 +24,29 @@ export const fetchWeatherData =async (lat: number, lon: number): Promise<TypeFet
     throw new Error('Failed to fetch weather data.');
   }
 }
+
+export const fetchWeatherDataAll = async (lat: number, lon: number): Promise<TypeWeatherResponseData> => {
+  const currentWeatherURL = `${BASE_URL}/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
+  const forecastWeatherURL = `${BASE_URL}/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
+  try {
+    const [currentWeatherResponse, forecastWeatherResponse] = await Promise.all([
+      axios.get(currentWeatherURL),
+      axios.get(forecastWeatherURL)
+    ]);
+
+    const currentWeather: TypeFetchWeather = currentWeatherResponse.data;
+    const forecastWeather: TypeForescastWeather = forecastWeatherResponse.data;
+  
+    return {
+      data: {
+        current: currentWeather,
+        forecast: forecastWeather
+      },
+      status: 200,
+      message: 'Solicitud exitosa'
+    };
+  } catch (error) {
+    throw new Error('Failed to fetch weather data.');
+  }
+}
+

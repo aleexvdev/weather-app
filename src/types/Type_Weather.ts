@@ -48,6 +48,7 @@ export type TypeFetchWeather = {
     humidity: number;
     sea_level: number;
     grnd_level: number;
+    temp_kf: number | null;
   };
   visibility: number;
   wind: {
@@ -55,6 +56,14 @@ export type TypeFetchWeather = {
     deg: number;
     gust: number;
   };
+  rain: {
+    "1h": number | null;
+    "3h": number | null;
+  }[];
+  snow: {
+    "1h": number | null;
+    "3h": number | null;
+  }[];
   clouds: {
     all: number;
   };
@@ -79,7 +88,117 @@ export type TypeFetchWeatherMain = {
   timezone: number;
 }
 
-
 export type TypeResultsProps = {
   weatherData: TypeFetchWeatherMain | undefined;
 }
+
+export type WeatherListItem = {
+  dt: number;
+  main: {
+    temp: number;
+    feels_like: number;
+    temp_min: number;
+    temp_max: number;
+    pressure: number;
+    sea_level: number;
+    grnd_level: number;
+    humidity: number;
+    temp_kf: number;
+  };
+  weather: {
+    id: number;
+    main: string;
+    description: string;
+    icon: string;
+  }[];
+  clouds: {
+    all: number;
+  };
+  wind: {
+    speed: number;
+    deg: number;
+    gust: number;
+  };
+  rain: {
+    "1h": number | null;
+    "3h": number | null;
+  }[];
+  snow: {
+    "1h": number | null;
+    "3h": number | null;
+  }[];
+  visibility: number;
+  pop: number;
+  sys: {
+    pod: string;
+  };
+  dt_txt: string;
+}
+
+export type TypeCityInfo = {
+  id: number;
+  name: string;
+  coord: {
+    lat: number;
+    lon: number;
+  };
+  country: string;
+  population: number;
+  timezone: number;
+  sunrise: number;
+  sunset: number;
+}
+
+export type TypeForescastWeather = {
+  cod: string;
+  message: number;
+  cnt: number;
+  list: WeatherListItem[];
+  city: TypeCityInfo;
+}
+
+export type TypeDataWeather = {
+  current: TypeFetchWeather;
+  forecast: TypeForescastWeather;
+}
+
+export type TypeWeatherResponseData = {
+  data: TypeDataWeather;
+  status: number;
+  message: string;
+}
+
+export type TypeMainWProp = {
+  temp: number;
+  feels_like: number;
+  temp_min: number;
+  temp_max: number;
+  pressure: number;
+  sea_level: number;
+  grnd_level: number;
+  humidity: number;
+  temp_kf: number | null;
+}
+
+export type TypeWindWProp = {
+  speed: number;
+  deg: number;
+  gust: number;
+}
+
+export type TypeWeatherWProp = {
+  id: number;
+  main: string;
+  description: string;
+  icon: string;
+}
+
+export type TypeRainWProp = {
+  "1h": number | null;
+  "3h": number | null;
+}[]
+
+export type TypeSnowWProp = {
+  "1h": number | null;
+  "3h": number | null;
+}[]

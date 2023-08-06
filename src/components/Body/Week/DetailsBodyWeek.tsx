@@ -33,12 +33,12 @@ export const DetailsBodyWeek = () => {
           </div>
           <div className='w-3/4'>
             <div className='flex flex-row items-center justify-between flex-wrap gap-2'>
-              <WindStatus />
+              {/* <WindStatus />
               <WindStatus />
               <PrecipitationStatus />
               <VisibilityStatus />
               <HumidityStatus />
-              <SunriseSunsetStatus />
+              <SunriseSunsetStatus /> */}
             </div>
           </div>
         </div>
