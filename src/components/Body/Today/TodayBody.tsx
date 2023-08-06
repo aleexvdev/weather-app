@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { TypeFetchWeather, TypeForescastWeather, WeatherListItem } from '../../../types/Type_Weather';
 import { getDataByDt, getHoursOfDay } from '../../../utils/functions';
 import { ItemForescastHours } from '../../Items/ItemForescastHours';
 import { FistBodyToday } from './FistBodyToday';
 import { SecondBodyToday } from './SecondBodyToday';
+import { TypeFetchWeather, TypeForescastWeather, WeatherListItem } from '../../../types/Type_Weather';
 
 interface TypeTodayBody {
   data: TypeFetchWeather;

@@ -1,5 +1,5 @@
-import { weekDays } from "../data/dataWeather";
-import { TypeForescastWeather, WeatherListItem } from "../types/Type_Weather";
+import { daysOfWeek, weekDays } from "../data/dataWeather";
+import { TypeForescastWeather, TypeWeekDays, WeatherListItem } from "../types/Type_Weather";
 
 export function kelvinToCelsius(kelvin: number): number {
   const celsius = kelvin - 273.15;
@@ -104,4 +104,55 @@ export function visionMeasurement(value: number): string {
   } else {
     return "Excellent";
   }
+} 
+
+function getNextDay (current_date: any) {
+  current_date.setDate(current_date.getDate() + 1);
+  var year = current_date.getFullYear();
+  var month = String(current_date.getMonth() + 1).padStart(2, '0');
+  var day = String(current_date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
+function getSixDay (current_date: any) {
+  current_date.setDate(current_date.getDate() + 5);
+  var year = current_date.getFullYear();
+  var month = String(current_date.getMonth() + 1).padStart(2, '0');
+  var day = String(current_date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+
+}
+
+export function getFormattedData(data: WeatherListItem[]): TypeWeekDays[]|any {
+  const current_date = new Date();
+  var next_date = getNextDay(current_date);
+  var end_date = getSixDay(current_date);
+  const startDate = new Date(next_date); 
+  const endDate = new Date(end_date);
+
+  const formattedData = [];
+
+  for (let date = startDate; date < endDate; date.setDate(date.getDate() + 1)) {
+    const filteredData = data.filter((item) => {
+      const itemDate = new Date(item.dt_txt);
+      return itemDate.getDate() === date.getDate();
+    });
+
+    const avgTemp = filteredData.reduce((acc, item) => acc + item.main.temp, 0) / filteredData.length;
+    const avgFeelsLike = filteredData.reduce((acc, item) => acc + item.main.feels_like, 0) / filteredData.length;
+    const climate = filteredData[0]?.weather[0]?.description ?? 'unknown';
+    const icon = filteredData[0]?.weather[0]?.icon ?? '03n';
+
+    if (climate !== 'unknown') {
+      formattedData.push({
+        day: daysOfWeek[date.getDay()],
+        climate,
+        temp: kelvinToCelsius(avgTemp).toFixed(2), // Convert Kelvin to Celsius
+        feels_like: kelvinToCelsius(avgFeelsLike).toFixed(2), // Convert Kelvin to Celsius
+        icon
+      });
+    }
+  }
+
+  return formattedData;
 }

@@ -1,8 +1,9 @@
 import React, { useMemo } from 'react'
 import { DetailsBodyToday } from './DetailsBodyToday'
-import { TypeFetchWeather } from '../../../types/Type_Weather'
 import { formatDate, formatUnixTimestamp, kelvinToCelsius, secondsToTimezone } from '../../../utils/functions'
 import { IconSunrise, IconSunset } from '../../../icons/SunriseSunsetIcons/IconSunriseSunset'
+import { TypeFetchWeather } from '../../../types/Type_Weather'
+
 
 interface TypeFirstBody {
   data: TypeFetchWeather

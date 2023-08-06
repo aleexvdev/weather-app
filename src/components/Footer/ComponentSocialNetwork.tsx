@@ -1,9 +1,9 @@
 import React from 'react'
-import { TypeSocialNetworks } from '../../types/Type_Weather';
 import IconBxlFacebook from '../../icons/SocialNetworksIcons/IconBxlFacebook';
 import IconBxlInstagram from '../../icons/SocialNetworksIcons/IconBxlInstagram';
 import IconBxlGithub from '../../icons/SocialNetworksIcons/IconBxlGithub';
 import IconBxlLinkedin from '../../icons/SocialNetworksIcons/IconBxlLinkedin';
+import { TypeSocialNetworks } from '../../types/Type_Weather';
 
 type TypePropsSocial = {
   props: TypeSocialNetworks;

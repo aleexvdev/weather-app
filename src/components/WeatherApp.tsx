@@ -36,7 +36,7 @@ export const WeatherApp = () => {
     const fetchData = async () => {
       const response = await fetchWeatherDataAll(lat, lon);
       if (response.status === 200) {
-        const { dt, timezone, weather, main, rain, snow } = response.data.current;
+        const { dt, timezone, weather, main } = response.data.current;
         const { description, icon } = weather[0];
         const { temp, feels_like } = main;
 

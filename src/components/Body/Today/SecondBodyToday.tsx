@@ -1,7 +1,8 @@
 import React, { useMemo } from 'react'
 import { DetailsBodyToday } from './DetailsBodyToday'
-import { TypeRainWProp, TypeSnowWProp, WeatherListItem } from '../../../types/Type_Weather'
+
 import { formatDate, kelvinToCelsius, secondsToTimezone } from '../../../utils/functions';
+import { TypeRainWProp, TypeSnowWProp, WeatherListItem } from '../../../types/Type_Weather';
 
 interface TypeSecondBody {
   data: WeatherListItem;

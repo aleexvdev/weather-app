@@ -1,6 +1,7 @@
 import { TypeSocialNetworks } from "../types/Type_Weather";
 
 
+
 export const socialNetworks: TypeSocialNetworks[] = [
   {
     id: 1,
