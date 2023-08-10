@@ -49,7 +49,9 @@ export const TodayBody = ( { data, forescast }: TypeTodayBody ) => {
             </div>
           </div>
           {
-            forescastWeatherData ? <SecondBodyToday data={forescastWeatherData} city={currentWeatherData.name} timezone={currentWeatherData.timezone} /> : <FistBodyToday data={currentWeatherData} />
+            forescastWeatherData 
+            ? <SecondBodyToday data={forescastWeatherData} city={currentWeatherData.name} timezone={currentWeatherData.timezone} /> 
+            : <FistBodyToday data={currentWeatherData} />
           }
         </div>
       </div>

@@ -8,10 +8,8 @@ interface TypeWindProp {
 }
 export const WindStatus = ( { props }: TypeWindProp ) => {
 
-  const { speed, deg } = props;
-
-  const speedkmh = mpsToKmph(speed);
-  const cardinal = getCardinalPoint(deg);
+  const speedkmh = props && mpsToKmph(props.speed);
+  const cardinal = props && getCardinalPoint(props.deg);
 
   return (
     <div className='bg-slate-700/50 w-[180px] h-[135px] rounded-lg shadow-md py-3 px-4'>
@@ -26,7 +24,7 @@ export const WindStatus = ( { props }: TypeWindProp ) => {
         </div>
         <div className='flex flex-row items-center justify-start gap-2 mt-3'>
           <IconWindNorth className='text-white' fontSize={22} />
-          <span className='text-white'>{cardinal.punto} {deg}°</span>
+          <span className='text-white'>{cardinal?.punto} {props?.deg}°</span>
         </div>
       </div>
     </div>

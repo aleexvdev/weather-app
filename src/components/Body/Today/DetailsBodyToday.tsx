@@ -20,15 +20,14 @@ export const DetailsBodyToday = ( { main, weather, wind, visibility, rain, snow 
   return (
     <div className='w-full'>
       <h2 className='py-3 text-xl'>Today's Highlights</h2>
-      <div className='flex flex-row items-center justify-between flex-wrap py-2'>
+      <div className='flex flex-row items-center justify-center gap-10 flex-wrap py-2'>
         <WindStatus props={wind} />
-        <PrecipitationStatus rain={rain} snow={snow} />
         <AtmosPressure props={main} />
+        <RoomTemperature props={main} />
       </div>
-      <div className='flex flex-row items-center justify-between flex-wrap py-2'>
+      <div className='flex flex-row items-center justify-center gap-10 flex-wrap py-2'>
         <VisibilityStatus props={visibility} />
         <HumidityStatus props={main.humidity} />
-        <RoomTemperature props={main} />
       </div>
     </div>
   )

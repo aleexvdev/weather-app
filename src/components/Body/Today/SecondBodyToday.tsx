@@ -12,7 +12,7 @@ interface TypeSecondBody {
 export const SecondBodyToday = ( { data, city, timezone }: TypeSecondBody ) => {
 
   const { main, dt, weather, clouds, visibility, wind } = data;
-  const { feels_like, grnd_level, sea_level, pressure, temp } = main;
+  const { feels_like, temp } = main;
   const { icon } = weather[0];
   const rain:TypeRainWProp = [];
   const snow:TypeSnowWProp = [];

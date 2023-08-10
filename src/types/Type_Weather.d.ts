@@ -204,9 +204,12 @@ export type TypeSnowWProp = {
 }[]
 
 export type TypeWeekDays = {
-  day: string;
+  dayweek: string;
+  dayweekabrev: string;
   climate: string;
-  temp: number;
-  feels_like: number;
+  temp: string;
+  feelslike: string;
   icon: string;
+  dt: number;
+  dttext: string;
 }

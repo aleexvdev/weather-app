@@ -1,4 +1,4 @@
-import { daysOfWeek, weekDays } from "../data/dataWeather";
+import { weekDays } from "../data/dataWeather";
 import { TypeForescastWeather, TypeWeekDays, WeatherListItem } from "../types/Type_Weather";
 
 export function kelvinToCelsius(kelvin: number): number {
@@ -26,7 +26,7 @@ export function secondsToTimezone(offsetSeconds: number): string {
 }
 
 export function formatDate(timestamp: number): string {
-  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
   const date = new Date(timestamp * 1000);
@@ -37,7 +37,19 @@ export function formatDate(timestamp: number): string {
   return `${dayOfWeek}, ${dayOfMonth} ${monthAbbreviation}`;
 }
 
-export const getHoursOfDay = (forecastData: WeatherListItem[], dt: number) => {
+export function formatDateTxt(dateString: string): string {
+  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+  const date = new Date(dateString);
+  const dayOfWeek = days[date.getDay()];
+  const dayOfMonth = date.getDate();
+  const monthAbbreviation = months[date.getMonth()];
+
+  return `${dayOfWeek}, ${dayOfMonth} ${monthAbbreviation}`;
+}
+
+export const getHoursOfDay = (forecastData: WeatherListItem[], dt: number): {timestamp:number,hour:string,dt_txt:string}[] => {
   const date = new Date(dt * 1000);
   const hoursOfDay = forecastData.filter((forecast) => {
     const forecastDate = new Date(forecast.dt * 1000);
@@ -50,14 +62,10 @@ export const getHoursOfDay = (forecastData: WeatherListItem[], dt: number) => {
     const formattedHour = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
     return {
       timestamp: forecast.dt,
-      hour: formattedHour
+      hour: formattedHour,
+      dt_txt: forecast.dt_txt
     };
   });
-
-  /* formattedHours.unshift({
-    timestamp: dt*1000,
-    hour: 'Just now'
-  }) */
 
   return formattedHours;
 };
@@ -106,53 +114,175 @@ export function visionMeasurement(value: number): string {
   }
 } 
 
-function getNextDay (current_date: any) {
-  current_date.setDate(current_date.getDate() + 1);
-  var year = current_date.getFullYear();
-  var month = String(current_date.getMonth() + 1).padStart(2, '0');
-  var day = String(current_date.getDate()).padStart(2, '0');
-  return `${year}-${month}-${day}`;
+
+export function findWeatherDataByDate(data: WeatherListItem[], dateTxt: string|null): { timestamp: number; hour: string; dt_txt: string; }[] {
+  if (dateTxt !== null) {
+    const dt_txyparams = dateTxt.split(' ')[0];
+    const filteredData = data.filter((item) => item.dt_txt.includes(dt_txyparams));
+    const resultArray = filteredData.map((item) => {
+      const timestamp = item.dt;
+      const hour = item.dt_txt.split(' ')[1].slice(0, 5);
+      return { timestamp: timestamp, hour: hour.toString(), dt_txt: item.dt_txt };
+    });
+    return resultArray;
+  }
+  return [];
 }
 
-function getSixDay (current_date: any) {
-  current_date.setDate(current_date.getDate() + 5);
-  var year = current_date.getFullYear();
-  var month = String(current_date.getMonth() + 1).padStart(2, '0');
-  var day = String(current_date.getDate()).padStart(2, '0');
-  return `${year}-${month}-${day}`;
-
+export const getDataByDtText = (dataList: TypeForescastWeather, dttext: string|undefined): WeatherListItem | null => {
+  const result = dataList.list.find((item) => item.dt_txt === dttext);
+  return result ? result : null;
 }
 
-export function getFormattedData(data: WeatherListItem[]): TypeWeekDays[]|any {
-  const current_date = new Date();
-  var next_date = getNextDay(current_date);
-  var end_date = getSixDay(current_date);
+export function formatDateWeek(timestamp: string): string {
+  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+  if (timestamp !== '0000-00-00 00:00:00') {
+    const date = new Date(timestamp);
+    const dayOfWeek = days[date.getDay()];
+    const dayOfMonth = date.getDate();
+    const monthAbbreviation = months[date.getMonth()];
+
+    return `${dayOfWeek}, ${dayOfMonth} ${monthAbbreviation}`;
+  }
+
+  return 'Data not found';
+  
+}
+
+function formatDateToISO(date: Date): string {
+  // const date = new Date(dateString);
+  const year = date.getFullYear().toString().padStart(4, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const day = date.getDate().toString().padStart(2, '0');
+  const formattedDate = `${year}-${month}-${day} 12:00:00`;
+  return formattedDate;
+}
+
+export function getDayNameInEnglish(dateString: string): string {
+  const daysInEnglish = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+  const date = new Date(dateString);
+  const dayIndex = date.getDay();
+
+  return daysInEnglish[dayIndex];
+}
+
+export function getDayNameAbrevInEnglish(dateString: string): string {
+  const daysInEnglish = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  const date = new Date(dateString);
+  const dayIndex = date.getDay();
+
+  return daysInEnglish[dayIndex];
+}
+
+/* export function getArrayForecastDays(data: WeatherListItem[]): TypeWeekDays[] | any {
+
+  var next_date = getTomorrowDate();
+  var end_date = getFiveDaysLaterDate();
   const startDate = new Date(next_date); 
   const endDate = new Date(end_date);
+  
+  // console.log('Result Current day: ', currentDate);
+  // console.log('Result Tomorrow : ', startDate);
+  // console.log('Result 5 after days: ', endDate);
 
   const formattedData = [];
-
-  for (let date = startDate; date < endDate; date.setDate(date.getDate() + 1)) {
+  for (let date = startDate; date <= endDate; date.setDate(date.getDate() + 1)) {
+    const date_format = formatDateToISO(date);
     const filteredData = data.filter((item) => {
-      const itemDate = new Date(item.dt_txt);
-      return itemDate.getDate() === date.getDate();
+      const itemDate = item.dt_txt;
+      return itemDate === date_format;
     });
 
-    const avgTemp = filteredData.reduce((acc, item) => acc + item.main.temp, 0) / filteredData.length;
-    const avgFeelsLike = filteredData.reduce((acc, item) => acc + item.main.feels_like, 0) / filteredData.length;
-    const climate = filteredData[0]?.weather[0]?.description ?? 'unknown';
-    const icon = filteredData[0]?.weather[0]?.icon ?? '03n';
-
-    if (climate !== 'unknown') {
+    if (filteredData.length > 0) {
+      const dateletter = getDayNameInEnglish(date_format);
+      const dateletterabrev = getDayNameAbrevInEnglish(date_format);
       formattedData.push({
-        day: daysOfWeek[date.getDay()],
-        climate,
-        temp: kelvinToCelsius(avgTemp).toFixed(2), // Convert Kelvin to Celsius
-        feels_like: kelvinToCelsius(avgFeelsLike).toFixed(2), // Convert Kelvin to Celsius
-        icon
+        dayweek: dateletter,
+        dayweekabrev: dateletterabrev,
+        climate: filteredData[0].weather[0].description,
+        temp: kelvinToCelsius(filteredData[0].main.temp).toFixed(2),
+        feelslike: kelvinToCelsius(filteredData[0].main.feels_like).toFixed(2),
+        icon: filteredData[0].weather[0].icon,
+        dt: filteredData[0].dt,
+        dttext: filteredData[0].dt_txt
+      });
+    }
+  }
+  // console.log(formattedData);
+  return formattedData.length > 0 ? formattedData : [{}];
+} */
+export function getArrayForecastDays(data: WeatherListItem[]): TypeWeekDays[] | any {
+  const formattedData: TypeWeekDays[] = [];
+
+  for (const item of data) {
+    const date_format = formatDateToISO(new Date(item.dt * 1000));
+
+    // Verificar si ya hemos agregado datos para esta fecha
+    const existingData = formattedData.find(entry => entry.dttext === date_format);
+    
+    if (!existingData) {
+      const dateletter = getDayNameInEnglish(date_format);
+      const dateletterabrev = getDayNameAbrevInEnglish(date_format);
+      formattedData.push({
+        dayweek: dateletter,
+        dayweekabrev: dateletterabrev,
+        climate: item.weather[0].description,
+        temp: kelvinToCelsius(item.main.temp).toFixed(2),
+        feelslike: kelvinToCelsius(item.main.feels_like).toFixed(2),
+        icon: item.weather[0].icon,
+        dt: item.dt,
+        dttext: date_format
       });
     }
   }
 
-  return formattedData;
+  return formattedData.length > 0 ? formattedData : [{}];
 }
+
+
+export function getDataTimestampWeek(data: WeatherListItem[], timestamp: string): WeatherListItem[] {
+  const targetDate = new Date(timestamp);
+  const targetDay = targetDate.getDate();
+  const targetMonth = targetDate.getMonth()+1;
+  const targetYear = targetDate.getFullYear();
+
+  const filteredData = data.filter(item => {
+    const itemDate = new Date(item.dt*1000);
+    const itemDay = itemDate.getDate();
+    const itemMonth = itemDate.getMonth()+1;
+    const itemYear = itemDate.getFullYear();
+
+    return (
+      itemDay === targetDay &&
+      itemMonth === targetMonth &&
+      itemYear === targetYear 
+    )
+  });
+
+  return filteredData;
+}
+
+export const getHoursOfDayTxt = (forecastData: WeatherListItem[], dt: string): {timestamp:number,hour:string,dt_txt:string}[] => {
+  const date = new Date(dt);
+  const hoursOfDay = forecastData.filter((forecast) => {
+    const forecastDate = new Date(forecast.dt_txt);
+    return forecastDate.getDate() === date.getDate();
+  });
+  const formattedHours = hoursOfDay.map((forecast) => {
+    const forecastDate = new Date(forecast.dt_txt);
+    const hours = forecastDate.getHours();
+    const minutes = forecastDate.getMinutes();
+    const formattedHour = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+    return {
+      timestamp: forecast.dt,
+      hour: formattedHour,
+      dt_txt: forecast.dt_txt
+    };
+  });
+
+  return formattedHours;
+};

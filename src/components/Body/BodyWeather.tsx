@@ -11,7 +11,7 @@ interface TypePropsBodyWeather {
 
 export const BodyWeather = ({ content, currentWeather, forescastWeather }: TypePropsBodyWeather) => {
 
-  if (content !== 0) {
+  if (content === 0) {
     return <TodayBody data={currentWeather} forescast={forescastWeather} />
   } else {
     return <WeekBody forescast={forescastWeather} />

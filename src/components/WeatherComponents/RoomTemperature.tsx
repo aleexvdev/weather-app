@@ -11,10 +11,8 @@ interface TypeRoomTemperatureProp {
 
 export const RoomTemperature = ( { props }: TypeRoomTemperatureProp) => {
 
-  const { temp_max, temp_min } = props;
-
-  const tempmax = kelvinToCelsius(temp_max).toFixed(2);
-  const tempmin = kelvinToCelsius(temp_min).toFixed(2);
+  const tempmax = props && kelvinToCelsius(props.temp_max).toFixed(2);
+  const tempmin = props && kelvinToCelsius(props.temp_min).toFixed(2);
 
   return (
     <div className='bg-slate-700/50 w-[180px] h-[135px] rounded-lg shadow-md py-3 px-4'>
