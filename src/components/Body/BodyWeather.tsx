@@ -7,12 +7,13 @@ interface TypePropsBodyWeather {
   content: number;
   currentWeather: TypeFetchWeather;
   forescastWeather: TypeForescastWeather;
+  optionDegree: string;
 }
 
-export const BodyWeather = ({ content, currentWeather, forescastWeather }: TypePropsBodyWeather) => {
+export const BodyWeather = ({ content, currentWeather, forescastWeather, optionDegree }: TypePropsBodyWeather) => {
 
   if (content === 0) {
-    return <TodayBody data={currentWeather} forescast={forescastWeather} />
+    return <TodayBody data={currentWeather} forescast={forescastWeather} optionDegree={optionDegree} />
   } else {
     return <WeekBody forescast={forescastWeather} />
   }

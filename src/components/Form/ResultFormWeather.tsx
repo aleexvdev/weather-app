@@ -1,10 +1,16 @@
 import React, { useState, useMemo, useEffect } from 'react'
 import { formatUnixTimestamp, kelvinToCelsius } from '../../utils/functions'
 import IconMostlyCloudy from '../../icons/IconMostlyCloudy'
-import { TypeResultsProps } from '../../types/Type_Weather'
 import { IconWindStatus } from '../../icons/WindStatusIcons/IconWindStatus'
+import { TypeFetchWeatherMain } from '../../types/Type_Weather';
 
-export const ResultFormWeather = ( { weatherData }: TypeResultsProps ) => {
+interface TypeResultsProps {
+  weatherData: TypeFetchWeatherMain | undefined;
+  optionDegree: string;
+}
+
+
+export const ResultFormWeather = ( { weatherData, optionDegree }: TypeResultsProps ) => {
 
   const [feelsLike, setFeelsLike] = useState<string>('')
 
@@ -15,7 +21,7 @@ export const ResultFormWeather = ( { weatherData }: TypeResultsProps ) => {
 
   useEffect(() => {
     const temperature = weatherData?.feels_like || 0;
-    const feelsLike = kelvinToCelsius(temperature).toFixed(1);
+    const feelsLike = optionDegree === 'C' ? kelvinToCelsius(temperature).toFixed(1) : temperature.toFixed(1);
     setFeelsLike(feelsLike);
   }, [weatherData]);
   

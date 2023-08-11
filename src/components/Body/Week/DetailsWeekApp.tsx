@@ -12,18 +12,21 @@ export const DetailsWeekApp = ( { data }: TypeDetailsWeekApp ) => {
   const [forecastData, setForecastData] = useState<WeatherListItem[]>([]);
   const [selectedDay, setSelectedDay] = useState<string>();
   const [selectedHour, setSelectedHour] = useState<string>('');
+  const [isSelected, setIsSelected] = useState<string>('');
 
   useEffect(() => {
     if (data.length > 0) {
       setForecastData(data);
       setSelectedDay(data[0].dt_txt);
       setSelectedHour(data[0].dt_txt);
+      setIsSelected(data[0].dt_txt);
     }
   }, [data]);
 
   const handleDayClick = (day: string) => {
     setSelectedDay(day);
     setSelectedHour('');
+    setIsSelected(day);
   };
 
   const handleHourClick = (hour: string) => {
@@ -50,6 +53,7 @@ export const DetailsWeekApp = ( { data }: TypeDetailsWeekApp ) => {
         <ForescastTodays 
           data={forecastData} 
           handleDayClick={handleDayClick} 
+          isSelectedDay={isSelected}
         />
         <ContentInfoWeek 
           data={filteredData}

@@ -8,9 +8,10 @@ import { TypeFetchWeather, TypeForescastWeather, WeatherListItem } from '../../.
 interface TypeTodayBody {
   data: TypeFetchWeather;
   forescast: TypeForescastWeather;
+  optionDegree: string;
 }
 
-export const TodayBody = ( { data, forescast }: TypeTodayBody ) => {
+export const TodayBody = ( { data, forescast, optionDegree }: TypeTodayBody ) => {
 
   const [currentWeatherData, setCurrentWeatherData] = useState<TypeFetchWeather>(data);
   const [forescastWeatherData, setForescastWeatherData] = useState<WeatherListItem | null>(); 

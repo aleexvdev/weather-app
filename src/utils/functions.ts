@@ -6,6 +6,11 @@ export function kelvinToCelsius(kelvin: number): number {
   return celsius;
 }
 
+export function kelvinToFahrenheit(kelvin: number): number {
+  const fahrenheit = (kelvin - 273.15) * (9 / 5) + 32;
+  return fahrenheit;
+}
+
 export function formatUnixTimestamp(timestamp: number, timezone: number): [string, string] {
   const date = new Date(timestamp*1000);
   const dayOfWeek = weekDays[date.getDay()];

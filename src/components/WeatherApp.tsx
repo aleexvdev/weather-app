@@ -22,6 +22,7 @@ export const WeatherApp = () => {
   const [weatherData, setWeatherData] = useState<TypeFetchWeatherMain>();
   const [currentWeather, setCurrentWeather] = useState<TypeFetchWeather>();
   const [forescastWeather, setForescastWeather] = useState<TypeForescastWeather>();
+  const [optionDegree, setOptionDegree] = useState<string>('C');
 
   const handleTabChange = (index: number) => {
     setActiveTabIndex(index);
@@ -29,6 +30,10 @@ export const WeatherApp = () => {
 
   const selectedCity = (city: TypeLocation) => {
     setCityData(city);
+  }
+
+  const changeOption = ( value: string ) => {
+    setOptionDegree(value);
   }
 
   useEffect(() => {
@@ -56,20 +61,20 @@ export const WeatherApp = () => {
   }, [cityData]);
 
   return (
-    <section className='min-h-[700px] bg-[#202B3B] rounded-3xl mt-10'>
+    <section className='min-h-[700px] bg-[#031026] rounded-3xl mt-10'>
       <div className='flex flex-row w-full'>
         <div className='w-[28%]'>
           <div className=' my-6 mx-5'>
             <FormWeather selectedCity={selectedCity} />
-            <ResultFormWeather weatherData={weatherData} />
+            <ResultFormWeather weatherData={weatherData} optionDegree={optionDegree} />
             <Footer />
           </div>
         </div>
         <div className='w-[72%]'>
           <div className=' my-6 mx-5'>
-            <HeaderWeather activeTabIndex={activeTabIndex} onTabChange={handleTabChange} />
+            <HeaderWeather activeTabIndex={activeTabIndex} onTabChange={handleTabChange} changeOption={changeOption} />
             {
-              currentWeather && forescastWeather ? <BodyWeather content={activeTabIndex} currentWeather={currentWeather} forescastWeather={forescastWeather} /> : <div>loading</div>
+              currentWeather && forescastWeather ? <BodyWeather content={activeTabIndex} currentWeather={currentWeather} forescastWeather={forescastWeather} optionDegree={optionDegree} /> : <div>loading</div>
             }
             
           </div>

@@ -5,14 +5,12 @@ import { WeatherListItem } from '../../types/Type_Weather';
 interface TypeForescastTodays {
   data: WeatherListItem[];
   handleDayClick: (dt: string) => void;
+  isSelectedDay: string;
 }
 
-export const ForescastTodays = ( { data, handleDayClick }: TypeForescastTodays ) => {
+export const ForescastTodays = ( { data, handleDayClick, isSelectedDay }: TypeForescastTodays ) => {
 
   const dataWeek: WeatherListItem[] = getDataWeek(data);
-  console.log(data);
-  console.log(dataWeek);
-
 
   return (
     <div className='w-full'>
@@ -20,7 +18,11 @@ export const ForescastTodays = ( { data, handleDayClick }: TypeForescastTodays )
         <div className='flex flex-row items-center justify-between py-0 gap-3'>
             {
               dataWeek.map( week => (
-                <ItemDayWeather props={week} handleDayClick={handleDayClick} />
+                <ItemDayWeather 
+                  props={week} 
+                  handleDayClick={handleDayClick}
+                  isSelected={week.dt_txt===isSelectedDay}
+                />
               ))
             }
         </div>

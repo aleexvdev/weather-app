@@ -88,9 +88,6 @@ export type TypeFetchWeatherMain = {
   timezone: number;
 }
 
-export type TypeResultsProps = {
-  weatherData: TypeFetchWeatherMain | undefined;
-}
 
 export type WeatherListItem = {
   dt: number;

@@ -33,7 +33,10 @@ export const MoreInfoBodyWeek = ( { data, selectedHour }: TypeMoreInfo ) => {
       <div className='flex items-center justify-between'>
         <div className='w-1/4 ml-3'>
           <div className='flex flex-col items-center justify-center'>
-            <h4 className='text-2xl'>{formatDay}</h4>
+            <div className='flex flex-col items-center justify-center gap-2'>
+              <span className='text-2xl'>{formatDay.split(', ')[0]}</span>
+              <span className='text-xl'>{formatDay.split(', ')[1]}</span>
+            </div>
             <div className='w-full h-full'>
               <img src={`../../assets/svg/${info[0].weather[0].icon}.svg`} alt="" className='inline-block h-44 w-44' />
             </div>
