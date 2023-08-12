@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import { TabsData } from '../../types/Type_Weather';
 import { motion } from "framer-motion";
 
@@ -9,7 +8,6 @@ interface TypePropsTab {
 }
 
 export const TabWeather = ({ tabs, activeTabIndex, onTabChange }: TypePropsTab) => {
-  // const [activeTab, setActiveTab] = useState(0);
 
   return (
     <div className='w-full'>
@@ -20,7 +18,7 @@ export const TabWeather = ({ tabs, activeTabIndex, onTabChange }: TypePropsTab) 
             initial={{ opacity: 0, y: 30 }}
             animate={{
               opacity: 1,
-              backgroundColor: activeTabIndex === index ? 'rgb(107 114 128 / 0.5)' : '',
+              backgroundColor: activeTabIndex === index ? '#0338A1' : '#0044ff46',
               y: 0,
               transition: { duration: 0.4 },
             }}
@@ -28,7 +26,7 @@ export const TabWeather = ({ tabs, activeTabIndex, onTabChange }: TypePropsTab) 
             className={`w-50 cursor-pointer px-5 py-2 rounded-xl`}
             onClick={() => onTabChange(index)}
           >
-            {tab.title}
+            <span className='text-white'>{tab.title}</span>
           </motion.div>
         ))}
       </div>

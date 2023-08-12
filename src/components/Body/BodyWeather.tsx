@@ -15,6 +15,6 @@ export const BodyWeather = ({ content, currentWeather, forescastWeather, optionD
   if (content === 0) {
     return <TodayBody data={currentWeather} forescast={forescastWeather} optionDegree={optionDegree} />
   } else {
-    return <WeekBody forescast={forescastWeather} />
+    return <WeekBody forescast={forescastWeather} optionDegree={optionDegree} />
   }
 }

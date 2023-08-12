@@ -6,6 +6,7 @@ import { ResultFormWeather } from './Form/ResultFormWeather'
 import { Footer } from './Footer/Footer'
 import { TypeFetchWeather, TypeFetchWeatherMain, TypeForescastWeather, TypeLocation } from '../types/Type_Weather'
 import { fetchWeatherDataAll } from '../api/apiweather'
+import { Title } from './Title/Title'
 
 const data: TypeLocation = {
   name: 'Huacho',
@@ -61,18 +62,19 @@ export const WeatherApp = () => {
   }, [cityData]);
 
   return (
-    <section className='min-h-[700px] bg-[#031026] rounded-3xl mt-10'>
+    <section className='min-h-[700px] bg-[#80c6ff] rounded-3xl mt-10'>
       <div className='flex flex-row w-full'>
         <div className='w-[28%]'>
           <div className=' my-6 mx-5'>
+            <Title />
             <FormWeather selectedCity={selectedCity} />
-            <ResultFormWeather weatherData={weatherData} optionDegree={optionDegree} />
+            <ResultFormWeather cityData={cityData} weatherData={weatherData} optionDegree={optionDegree} />
             <Footer />
           </div>
         </div>
         <div className='w-[72%]'>
-          <div className=' my-6 mx-5'>
-            <HeaderWeather activeTabIndex={activeTabIndex} onTabChange={handleTabChange} changeOption={changeOption} />
+          <div className='my-6 mx-5'>
+            <HeaderWeather activeTabIndex={activeTabIndex} onTabChange={handleTabChange} changeOption={changeOption} optionDegree={optionDegree} />
             {
               currentWeather && forescastWeather ? <BodyWeather content={activeTabIndex} currentWeather={currentWeather} forescastWeather={forescastWeather} optionDegree={optionDegree} /> : <div>loading</div>
             }

@@ -20,6 +20,7 @@ export const TodayBody = ( { data, forescast, optionDegree }: TypeTodayBody ) =>
 
   useEffect(() => {
     setCurrentWeatherData(data);
+    setStateTimestamp(data.dt)
   }, [data]);
 
   useEffect(() => {
@@ -37,13 +38,21 @@ export const TodayBody = ( { data, forescast, optionDegree }: TypeTodayBody ) =>
         <div className='my-1 px-4 flex flex-col h-full'>
           <div className='mt-4'>
             <div className='flex flex-row items-center justify-center gap-2'>
-              <button key={'justnow'} className='text-sm bg-blue-700/80 w-20 px-2 py-1 rounded-lg' onClick={() => handleBody(data.dt)}>Just now</button>
+              <button 
+                key={'justnow'} 
+                className={`text-sm w-20 px-3 py-1 rounded-lg ${data.dt === stateTimestamp || stateTimestamp === null ? 'bg-[#0338a1] text-white': 'text-black font-bold'}`} 
+                onClick={() => handleBody(data.dt)}
+              >
+                Just now
+              </button>
               {
                 hours.map( (hour) => (
                   <ItemForescastHours 
+                    key={hour.timestamp}
                     props={hour} 
-                    styled={'text-sm bg-blue-700/80 w-20 px-2 py-1 rounded-lg'} 
+                    styled={`text-sm w-20 px-3 py-1 rounded-lg ${hour.timestamp === stateTimestamp ? 'bg-[#0338a1] text-white': 'text-black font-bold hover:text-[#0338a1]'}`} 
                     handleBody={handleBody}
+                    stateTimestamp={stateTimestamp}
                   />
                 ))
               }
@@ -51,8 +60,8 @@ export const TodayBody = ( { data, forescast, optionDegree }: TypeTodayBody ) =>
           </div>
           {
             forescastWeatherData 
-            ? <SecondBodyToday data={forescastWeatherData} city={currentWeatherData.name} timezone={currentWeatherData.timezone} /> 
-            : <FistBodyToday data={currentWeatherData} />
+            ? <SecondBodyToday data={forescastWeatherData} city={currentWeatherData.name} timezone={currentWeatherData.timezone} optionDegree={optionDegree} sys={currentWeatherData.sys} /> 
+            : <FistBodyToday data={currentWeatherData} optionDegree={optionDegree} />
           }
         </div>
       </div>

@@ -4,9 +4,10 @@ import { DetailsWeekApp } from './DetailsWeekApp';
 
 interface TypeWeekBody {
   forescast: TypeForescastWeather;
+  optionDegree: string;
 }
 
-export const WeekBody = ( { forescast }: TypeWeekBody ) => {
+export const WeekBody = ( { forescast, optionDegree }: TypeWeekBody ) => {
 
   const [forescastWeatherData, setForescastWeatherData] = useState<WeatherListItem[]>(); 
 
@@ -23,7 +24,7 @@ export const WeekBody = ( { forescast }: TypeWeekBody ) => {
     <div>
       <div className='w-full'>
         <div className='my-1 px-3 flex flex-col h-full items-center justify-between'>
-          <DetailsWeekApp data={forescastWeatherData} />
+          <DetailsWeekApp data={forescastWeatherData} optionDegree={optionDegree} />
         </div>
       </div>
     </div>

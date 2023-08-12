@@ -5,9 +5,10 @@ import { ContentInfoWeek } from './ContentInfoWeek';
 
 interface TypeDetailsWeekApp {
   data: WeatherListItem[];
+  optionDegree: string;
 }
 
-export const DetailsWeekApp = ( { data }: TypeDetailsWeekApp ) => {
+export const DetailsWeekApp = ( { data, optionDegree }: TypeDetailsWeekApp ) => {
 
   const [forecastData, setForecastData] = useState<WeatherListItem[]>([]);
   const [selectedDay, setSelectedDay] = useState<string>();
@@ -59,6 +60,7 @@ export const DetailsWeekApp = ( { data }: TypeDetailsWeekApp ) => {
           data={filteredData}
           selectedHour={selectedHour}
           onHourClick={handleHourClick}
+          optionDegree={optionDegree}
         />
       </div>
     </div>

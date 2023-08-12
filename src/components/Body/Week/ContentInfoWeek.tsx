@@ -6,8 +6,9 @@ interface TypeContentInfoWeek {
   data: WeatherListItem[];
   selectedHour: string;
   onHourClick: (dt: string) => void;
+  optionDegree: string;
 }
-export const ContentInfoWeek = ( { data, selectedHour, onHourClick }: TypeContentInfoWeek ) => {
+export const ContentInfoWeek = ( { data, selectedHour, onHourClick, optionDegree }: TypeContentInfoWeek ) => {
 
   if (!data || data.length === 0) {
     return <div>Loading...</div>; 
@@ -21,7 +22,7 @@ export const ContentInfoWeek = ( { data, selectedHour, onHourClick }: TypeConten
 
   return (
     <div className='w-full min-h-[430px] mt-4'>
-      <h2 className='mt-4 text-xl'>Highlights of the Week</h2>
+      <h2 className='mt-4 text-xl text-black tracking-wide font-bold'>Highlights of the Week</h2>
       <div className='flex flex-row items-center justify-between min-h-[390px]'>
         <div className='w-[60px] max-h-[410px]'>
           <div className='flex flex-col items-center justify-center gap-4'>
@@ -29,7 +30,7 @@ export const ContentInfoWeek = ( { data, selectedHour, onHourClick }: TypeConten
               <motion.button
                 key={hour.dt_txt}
                 className={`text-sm w-12 px-2 py-1 rounded-lg ${
-                  selectedHour === hour.dt_txt ? 'bg-blue-700/80 text-white' : ''
+                  selectedHour === hour.dt_txt ? 'bg-[#0338a1] text-white' : 'text-black font-bold hover:text-[#0338a1]'
                 }`}
                 onClick={() => onHourClick(hour.dt_txt)}
                 whileTap={{ scale: 0.9, opacity: 0.8 }}
@@ -41,7 +42,7 @@ export const ContentInfoWeek = ( { data, selectedHour, onHourClick }: TypeConten
         </div>
         <div className='w-full h-full'>
           <div className='flex flex-row items-center justify-between flex-wrap gap-2'>
-            {data && <MoreInfoBodyWeek data={data} selectedHour={selectedHour} />}
+            {data && <MoreInfoBodyWeek data={data} selectedHour={selectedHour} optionDegree={optionDegree} />}
           </div>
         </div>
       </div>

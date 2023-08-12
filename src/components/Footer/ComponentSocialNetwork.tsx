@@ -27,7 +27,7 @@ export const ComponentSocialNetwork = ( {props}: TypePropsSocial ) => {
 
   const renderIcon = (social: string) => {
     const IconComponent = socialNetworkIcons[social];
-    return IconComponent ? <IconComponent fontSize={26} /> : null;
+    return IconComponent ? <IconComponent fontSize={26} key={social} className='text-[#0338a1]' /> : null;
   };
 
   return (

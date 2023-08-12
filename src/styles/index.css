@@ -13,19 +13,7 @@
 }
 
 body {
-  /* background-color: #0B131E; */
-  background-color: #212933;
-  color: white;
-  /* 
-  
-  display: inline-block;
-  align-items: center;
-  justify-content: center;*/
-  /* height: 100vh;
-  width: 100vw; */
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-
+  background-color: #cbe5ff;
+  color: black;
 }
 
