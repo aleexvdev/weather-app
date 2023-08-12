@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './styles/index.css';
-import App from './App';
+import { App } from './App';
+import { ThemeProvider } from './context/ThemeContext/ThemeContext';
 
 const link = document.createElement('link');
 link.href = 'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&family=Open+Sans&display=swap';
@@ -13,7 +14,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
+  <ThemeProvider>
     <App />
-  </React.StrictMode>
+  </ThemeProvider>
+</React.StrictMode>
 );
 

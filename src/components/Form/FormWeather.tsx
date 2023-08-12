@@ -18,7 +18,7 @@ export const FormWeather = ( {selectedCity}: TypeFormProps ) => {
   useEffect(() => {
     const fetchData = async () => {
       if (search.trim().length > 0) {
-        const results = await fetchLocations(search, 5); // Limitamos a 5 resultados
+        const results = await fetchLocations(search, 6);
         setResults(results);
       } else {
         setResults([]);

@@ -7,6 +7,7 @@ import { RoomTemperature } from '../../WeatherComponents/RoomTemperature'
 import { TypeMainWProp, TypeRainWProp, TypeSnowWProp, TypeWeatherWProp, TypeWindWProp } from '../../../types/Type_Weather'
 import { formatUnixTimestamp } from '../../../utils/functions'
 import { SunriseSunsetStatus } from '../../WeatherComponents/SunriseSunsetStatus'
+import { useTheme } from '../../../context/ThemeContext/ThemeContext'
 
 interface TypeSys {
   country: string;
@@ -28,12 +29,13 @@ interface TypeDetailsWeather {
 
 export const DetailsBodyToday = ( { main, weather, wind, visibility, rain, snow, optionDegree, sys, timezone }: TypeDetailsWeather ) => {
 
+  const { textColorContent } = useTheme();
   const sunrise = formatUnixTimestamp(sys.sunrise, timezone);
   const sunset = formatUnixTimestamp(sys.sunset, timezone);
 
   return (
     <div className='w-full'>
-      <h2 className='py-3 text-xl text-black tracking-wide font-bold'>Today's Highlights</h2>
+      <h2 className={`py-3 text-xl ${textColorContent} tracking-wide font-medium`}>Today's Highlights</h2>
       <div className='flex flex-row items-center justify-center gap-10 flex-wrap py-2'>
         <WindStatus props={wind} />
         <AtmosPressure props={main} />

@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import { TabWeather } from '../Tabs/TabWeather'
 import { OtherOptionsWeather } from './OtherOptionsWeather'
 import { tabs } from '../../data/dataWeather'

@@ -4,6 +4,7 @@ import IconBxlInstagram from '../../icons/SocialNetworksIcons/IconBxlInstagram';
 import IconBxlGithub from '../../icons/SocialNetworksIcons/IconBxlGithub';
 import IconBxlLinkedin from '../../icons/SocialNetworksIcons/IconBxlLinkedin';
 import { TypeSocialNetworks } from '../../types/Type_Weather';
+import { useTheme } from '../../context/ThemeContext/ThemeContext';
 
 type TypePropsSocial = {
   props: TypeSocialNetworks;
@@ -23,11 +24,12 @@ const socialNetworkIcons: TypeIconSocialNetwork = {
 
 export const ComponentSocialNetwork = ( {props}: TypePropsSocial ) => {
 
+  const { colorIconSocial } = useTheme();
   const { id, social_network, url } = props;
 
   const renderIcon = (social: string) => {
     const IconComponent = socialNetworkIcons[social];
-    return IconComponent ? <IconComponent fontSize={26} key={social} className='text-[#0338a1]' /> : null;
+    return IconComponent ? <IconComponent fontSize={26} key={social} className={colorIconSocial} /> : null;
   };
 
   return (

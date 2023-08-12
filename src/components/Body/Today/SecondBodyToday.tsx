@@ -2,6 +2,7 @@ import React, { useMemo } from 'react'
 import { DetailsBodyToday } from './DetailsBodyToday'
 import { formatDate, kelvinToCelsius, secondsToTimezone } from '../../../utils/functions';
 import { TypeRainWProp, TypeSnowWProp, WeatherListItem } from '../../../types/Type_Weather';
+import { useTheme } from '../../../context/ThemeContext/ThemeContext';
 
 interface TypeSys {
   country: string;
@@ -18,6 +19,8 @@ interface TypeSecondBody {
 }
 
 export const SecondBodyToday = ( { data, city, timezone, optionDegree, sys }: TypeSecondBody ) => {
+
+  const { textColorContent, textColorGray, textColorContent70 } = useTheme();
 
   const { main, dt, weather, clouds, visibility, wind } = data;
   const { feels_like, temp } = main;
@@ -44,22 +47,22 @@ export const SecondBodyToday = ( { data, city, timezone, optionDegree, sys }: Ty
       <div className='mt-2'>
         <div className='flex flex-row justify-between items-center w-full'>
           <div className='w-full flex flex-col justify-center items-start gap-10'>
-            <h3 className='text-6xl font-semibold text-black tracking-wide'>{city}</h3>
-            <span className='text-gray-800/70 font-semibold text-4xl'>{temperature} °{optionDegree}</span>
+            <h3 className={`text-5xl font-bold  ${textColorContent} tracking-normal`}>{city}</h3>
+            <span className={`${textColorGray} font-semibold text-4xl`}>{temperature} °{optionDegree}</span>
           </div>
           <div className='w-full flex items-center justify-center'>
             <div className='flex flex-col items-center justify-center px-5'>
               <img src={`../../../assets/svg/${icon}.svg`} alt={description} className='inline-block h-44 w-44' />
             </div>
           </div>
-          <div className='w-full flex flex-col items-end justify-center'>
-            <span className='text-black/70 font-semibold text-[14px]'>{dayformat}</span>
-            <span className='text-black/70 font-semibold text-[14px]'>Timezone {utc}</span>
-            <span className='text-black/70 font-semibold text-[14px]'>Feels like {feelsLike} °{optionDegree}</span>
-            <span className='text-black/70 font-semibold text-[14px]'>Cloudiness {clouds.all}%</span>
+          <div className={`w-full flex flex-col items-end justify-center ${textColorContent70}`}>
+            <span className='text-[14px]'>{dayformat}</span>
+            <span className='text-[14px]'>Timezone {utc}</span>
+            <span className='text-[14px]'>Feels like {feelsLike} °{optionDegree}</span>
+            <span className='text-[14px]'>Cloudiness {clouds.all}%</span>
             <div className='flex flex-row items-center justify-center mt-3 gap-2'>
               <img src={`https://openweathermap.org/img/w/${icon}.png`} alt={description} className='inline-block h-9 w-9' />
-              <span className='text-black/70 font-semibold text-[14px]'>{description}</span>
+              <span className='text-[14px]'>{description}</span>
             </div>
           </div>
         </div>

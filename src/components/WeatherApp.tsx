@@ -7,6 +7,7 @@ import { Footer } from './Footer/Footer'
 import { TypeFetchWeather, TypeFetchWeatherMain, TypeForescastWeather, TypeLocation } from '../types/Type_Weather'
 import { fetchWeatherDataAll } from '../api/apiweather'
 import { Title } from './Title/Title'
+import { useTheme } from '../context/ThemeContext/ThemeContext'
 
 const data: TypeLocation = {
   name: 'Huacho',
@@ -24,6 +25,8 @@ export const WeatherApp = () => {
   const [currentWeather, setCurrentWeather] = useState<TypeFetchWeather>();
   const [forescastWeather, setForescastWeather] = useState<TypeForescastWeather>();
   const [optionDegree, setOptionDegree] = useState<string>('C');
+
+  const { backgroundContent } = useTheme();
 
   const handleTabChange = (index: number) => {
     setActiveTabIndex(index);
@@ -62,7 +65,7 @@ export const WeatherApp = () => {
   }, [cityData]);
 
   return (
-    <section className='min-h-[700px] bg-[#80c6ff] rounded-3xl mt-10'>
+    <section className={`min-h-[700px] ${backgroundContent} rounded-3xl mt-10`}>
       <div className='flex flex-row w-full'>
         <div className='w-[28%]'>
           <div className=' my-6 mx-5'>
