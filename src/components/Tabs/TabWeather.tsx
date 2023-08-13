@@ -1,6 +1,6 @@
 import { useTheme } from '../../context/ThemeContext/ThemeContext';
 import { TabsData } from '../../types/Type_Weather';
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 interface TypePropsTab {
   tabs: TabsData[];
