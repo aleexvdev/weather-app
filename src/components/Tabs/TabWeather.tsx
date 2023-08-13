@@ -1,6 +1,6 @@
 import { useTheme } from '../../context/ThemeContext/ThemeContext';
 import { TabsData } from '../../types/Type_Weather';
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface TypePropsTab {
   tabs: TabsData[];
@@ -22,18 +22,21 @@ export const TabWeather = ({ tabs, activeTabIndex, onTabChange }: TypePropsTab) 
             animate={{
               opacity: 1,
               backgroundColor: activeTabIndex === index 
-              ? `${isDarkMode ? '#6cbdff' : '#0338A1'}` 
-              : `${isDarkMode ? '#324b7b' : '#0044ff46'}`,
+              ? '#EF4444'
+              : '',
               y: 0,
               transition: { duration: 0.4 },
+              color: activeTabIndex === index 
+              ? 'white'
+              : `${isDarkMode ? '#9b9b9b' : 'black'}`
             }}
             exit={{ opacity: 0, y: 20, transition: { duration: 0.5 } }}
-            whileHover={{ backgroundColor: `${isDarkMode ? '#6cbdff' : '#0044ff80'}`, transition: { duration: 0.2 } }}
-            whileTap={{ backgroundColor: `${isDarkMode ? '#37a5ff' : '#0044ff'}`, transition: { duration: 0.2 } }}
+            whileHover={{ backgroundColor: '#EF4444' , transition: { duration: 0.2 }, color: 'white' }}
+            whileTap={{ backgroundColor: '#EF4444', transition: { duration: 0.2 } }}
             className={`w-50 cursor-pointer px-5 py-2 rounded-xl`}
             onClick={() => onTabChange(index)}
           >
-            <span className={`${isDarkMode ? 'text-black' : 'text-white'}`}>{tab.title}</span>
+            <span className={`font-medium`}>{tab.title}</span>
           </motion.div>
         ))}
       </div>
