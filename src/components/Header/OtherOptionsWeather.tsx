@@ -1,5 +1,5 @@
+import { motion } from 'framer-motion'
 import IconWiCelsius from '../../icons/IconWiCelsius'
-import { IconTheme } from '../../icons/Theme/IconTheme'
 import IconWiFahrenheit from '../../icons/IconWiFahrenheit'
 import { IconMapLocation } from '../../icons/IconMapLocation'
 import { useTheme } from '../../context/ThemeContext/ThemeContext';
@@ -8,6 +8,11 @@ interface TypeOptionsWeather {
   changeOption: (value: string) => void;
   optionDegree: string;
 }
+
+const toggleVariants = {
+  active: { x: '100%' },
+  inactive: { x: '0%' },
+};
 
 export const OtherOptionsWeather = ( { changeOption, optionDegree }: TypeOptionsWeather ) => {
 
@@ -23,7 +28,7 @@ export const OtherOptionsWeather = ( { changeOption, optionDegree }: TypeOptions
         >
           <IconWiCelsius 
             fontSize={25} 
-            className={`${optionDegree === 'C' ? 'text-white' : `${isDarkMode ? 'text-white/50' : 'text-black'}`}`}
+            className={`${optionDegree === 'C' ? 'text-white' : `${isDarkMode ? 'text-white/80' : 'text-black'}`}`}
           />
         </button>
         <button 
@@ -33,7 +38,7 @@ export const OtherOptionsWeather = ( { changeOption, optionDegree }: TypeOptions
         >
           <IconWiFahrenheit 
             fontSize={25} 
-            className={`${optionDegree === 'F' ? 'text-white' : `${isDarkMode ? 'text-white/50' : 'text-black'}`}`}
+            className={`${optionDegree === 'F' ? 'text-white' : `${isDarkMode ? 'text-white/80' : 'text-black'}`}`}
           />
         </button>
         <button 
@@ -45,15 +50,19 @@ export const OtherOptionsWeather = ( { changeOption, optionDegree }: TypeOptions
             color='black'
           />
         </button>
-        <button 
-          className='rounded-full p-2 h-10 w-10'
+        <div 
+          className="flex items-center h-screen cursor-pointer" 
           onClick={toggleTheme}
         >
-          <IconTheme 
-            fontSize={30} 
-            color='white'
-          />
-        </button>
+          <div className={`relative w-16 h-8 rounded-full ${isDarkMode ? 'bg-[#4dafff]' : 'bg-[#0338A1]' }`}>
+            <motion.div
+              className="absolute w-8 h-8 bg-yellow-500 rounded-full"
+              variants={toggleVariants}
+              initial="inactive"
+              animate={isDarkMode ? 'active' : 'inactive'}
+            />
+          </div>
+        </div>
       </div>
     </div>
   )

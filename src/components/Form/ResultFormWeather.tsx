@@ -1,7 +1,5 @@
-import React, { useState, useMemo, useEffect } from 'react'
+import React, { useMemo } from 'react'
 import { formatUnixTimestamp, kelvinToCelsius, kelvinToFahrenheit } from '../../utils/functions'
-import IconMostlyCloudy from '../../icons/IconMostlyCloudy'
-import { IconWindStatus } from '../../icons/WindStatusIcons/IconWindStatus'
 import { TypeFetchWeatherMain, TypeLocation } from '../../types/Type_Weather';
 import IconLatitude from '../../icons/IconLatitude';
 import IconLongitude from '../../icons/IconLongitude';
