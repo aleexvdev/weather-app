@@ -30,7 +30,7 @@ export const ItemDayWeather = ( { props, handleDayClick, isSelected }: ItemWeath
         initial={{ scale: 1 }}
         animate={{ scale: 1 }}
       >
-        <div className={`flex items-center justify-between px-2 py-1 rounded-tl-xl rounded-tr-xl`}>
+        <div className={`flex items-center justify-between px-1 md:px-2 py-1 rounded-tl-xl rounded-tr-xl`}>
           <span className='text-xs text-white px-1'>●</span>
           <span className='text-sm text-white'>{dayweekabrev}</span>
           <span className='text-xs text-white px-1'>●</span>

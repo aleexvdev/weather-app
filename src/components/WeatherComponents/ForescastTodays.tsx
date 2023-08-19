@@ -15,7 +15,7 @@ export const ForescastTodays = ( { data, handleDayClick, isSelectedDay }: TypeFo
   return (
     <div className='w-full'>
       <div className='my-1'>
-        <div className='flex flex-row items-center justify-between py-0 gap-3'>
+        <div className='flex flex-row items-center justify-center md:justify-between flex-wrap py-0 gap-3'>
             {
               dataWeek.map( week => (
                 <ItemDayWeather
