@@ -66,16 +66,16 @@ export const WeatherApp = () => {
 
   return (
     <section className={`min-h-[700px] ${backgroundContent} rounded-3xl mt-10`}>
-      <div className='flex flex-row w-full'>
-        <div className='w-[28%]'>
-          <div className=' my-6 mx-5'>
+      <div className='flex md:flex-row w-full flex-col'>
+        <div className='md:w-[28%]'>
+          <div className='md:my-6 md:mx-5 mx-3 my-5'>
             <Title />
             <FormWeather selectedCity={selectedCity} />
             <ResultFormWeather cityData={cityData} weatherData={weatherData} optionDegree={optionDegree} />
             <Footer />
           </div>
         </div>
-        <div className='w-[72%]'>
+        <div className='md:w-[72%]'>
           <div className='my-6 mx-5'>
             <HeaderWeather activeTabIndex={activeTabIndex} onTabChange={handleTabChange} changeOption={changeOption} optionDegree={optionDegree} />
             {

@@ -34,14 +34,12 @@ export const DetailsBodyToday = ( { main, weather, wind, visibility, rain, snow,
   const sunset = formatUnixTimestamp(sys.sunset, timezone);
 
   return (
-    <div className='w-full'>
+    <div className='w-full mt-5 md:mt-2'>
       <h2 className={`py-3 text-xl ${textColorContent} tracking-wide font-medium`}>Today's Highlights</h2>
-      <div className='flex flex-row items-center justify-center gap-10 flex-wrap py-2'>
+      <div className='flex flex-row items-center justify-center gap-y-5 gap-x-16 flex-wrap py-2'>
         <WindStatus props={wind} />
         <AtmosPressure props={main} />
         <RoomTemperature props={main} optionDegree={optionDegree} />
-      </div>
-      <div className='flex flex-row items-center justify-center gap-10 flex-wrap py-2'>
         <VisibilityStatus props={visibility} />
         <HumidityStatus props={main.humidity} />
         <SunriseSunsetStatus sunrise={sunrise} sunset={sunset} />

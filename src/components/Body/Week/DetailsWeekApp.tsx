@@ -50,7 +50,7 @@ export const DetailsWeekApp = ( { data, optionDegree }: TypeDetailsWeekApp ) => 
 
   return (  
     <div className='w-full h-full'>
-      <div className='mt-4 px-3 flex flex-col h-full items-center justify-between'>
+      <div className='mt-4 px-0 md:px-3 flex flex-col h-full items-center justify-between'>
         <ForescastTodays 
           data={forecastData} 
           handleDayClick={handleDayClick} 

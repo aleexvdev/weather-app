@@ -27,14 +27,14 @@ export const MoreInfoBodyWeek = ( { data, selectedHour, optionDegree }: TypeMore
     return false;
   });
 
-  if (!data || data.length === 0) {
+  if ((!data || data.length === 0) && info.length === 0) {
     return <div>Loading...</div>; 
   }
 
   return (
-    <div className='w-full max-h-[380px] mt-5'>
-      <div className='flex items-center justify-between'>
-        <div className='w-1/4 ml-3'>
+    <div className='w-full max-h-[380px]'>
+      <div className='flex flex-col md:flex-row items-center justify-between'>
+        <div className='md:w-[35%] md:mx-3'>
           <div className='flex flex-col items-center justify-center'>
             <div className='flex flex-col items-center justify-center gap-2'>
               <span className={`text-2xl font-bold ${textColorContent} tracking-normal`}>{formatDay.split(', ')[0]}</span>
@@ -53,15 +53,13 @@ export const MoreInfoBodyWeek = ( { data, selectedHour, optionDegree }: TypeMore
             </div>
           </div>
         </div>
-        <div>
-          <div className='flex flex-row items-center justify-between flex-wrap py-2 gap-2'>
-            {info && <WindStatus props={info[0]?.wind} /> }
-            { info && <RoomTemperature props={info[0]?.main} optionDegree={optionDegree} /> }
-            { info && <AtmosPressure props={info[0]?.main} /> }
-          </div>
-          <div className='flex flex-row items-center justify-center gap-2 py-2'>
-            { info && <VisibilityStatus props={info[0]?.visibility} /> }
-            { info && <HumidityStatus props={info[0]?.main.humidity} /> }
+        <div className='w-full mt-10 md:mt-0'>
+          <div className='flex flex-row items-center justify-center flex-wrap py-0 gap-x-2 gap-y-4'>
+            <WindStatus props={info[0]?.wind} />
+            <RoomTemperature props={info[0]?.main} optionDegree={optionDegree} />
+            <AtmosPressure props={info[0]?.main} />
+            <VisibilityStatus props={info[0]?.visibility} />
+            <HumidityStatus props={info[0]?.main.humidity} />
           </div>
         </div>
       </div>

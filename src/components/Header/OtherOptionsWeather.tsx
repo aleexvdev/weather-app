@@ -41,7 +41,7 @@ export const OtherOptionsWeather = ( { changeOption, optionDegree }: TypeOptions
             className={`${optionDegree === 'F' ? 'text-white' : `${isDarkMode ? 'text-white/80' : 'text-black'}`}`}
           />
         </button>
-        <button 
+        {/* <button 
           className='rounded-xl px-2 h-10 w-10 hover:bg-gray-200/80'
           title='Map'
         >
@@ -49,14 +49,14 @@ export const OtherOptionsWeather = ( { changeOption, optionDegree }: TypeOptions
             fontSize={25} 
             color='black'
           />
-        </button>
+        </button> */}
         <div 
           className="flex items-center h-screen cursor-pointer" 
           onClick={toggleTheme}
         >
-          <div className={`relative w-16 h-8 rounded-full ${isDarkMode ? 'bg-[#4dafff]' : 'bg-[#0338A1]' }`}>
+          <div className={`relative w-14 h-7 rounded-full ${isDarkMode ? 'bg-[#4dafff]' : 'bg-[#0338A1]' }`}>
             <motion.div
-              className="absolute w-8 h-8 bg-yellow-500 rounded-full"
+              className="absolute w-7 h-7 bg-yellow-500 rounded-full"
               variants={toggleVariants}
               initial="inactive"
               animate={isDarkMode ? 'active' : 'inactive'}

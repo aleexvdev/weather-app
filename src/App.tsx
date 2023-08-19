@@ -14,7 +14,7 @@ export const App = () => {
         exit={{ opacity: 0 }}
         className={` ${backgroundMain} absolute inset-0 `}
       >
-        <main className='mx-auto max-w-7xl'>
+        <main className='mx-auto md:max-w-7xl max-w-[95%]'>
           <WeatherApp />
         </main>
       </motion.div>

@@ -35,8 +35,8 @@ export const TodayBody = ( { data, forescast, optionDegree }: TypeTodayBody ) =>
   return (
     <div>
       <div className='w-full'>
-        <div className='my-1 px-4 flex flex-col h-full'>
-          <div className='mt-4'>
+        <div className='my-1 px-2 md:px-4 flex flex-col h-full'>
+          {/* <div className='mt-4'>
             <div className='flex flex-row items-center justify-center gap-2'>
               <button 
                 key={'justnow'} 
@@ -57,7 +57,7 @@ export const TodayBody = ( { data, forescast, optionDegree }: TypeTodayBody ) =>
                 ))
               }
             </div>
-          </div>
+          </div> */}
           {
             forescastWeatherData 
             ? <SecondBodyToday data={forescastWeatherData} city={currentWeatherData.name} timezone={currentWeatherData.timezone} optionDegree={optionDegree} sys={currentWeatherData.sys} /> 
