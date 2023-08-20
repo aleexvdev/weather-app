@@ -9,7 +9,7 @@ import { useTheme } from '../../../context/ThemeContext/ThemeContext';
 
 interface TypeMoreInfo {
   data: WeatherListItem[];
-  selectedHour: string;
+  selectedHour: string|number;
   optionDegree: string;
 }
 export const MoreInfoBodyWeek = ( { data, selectedHour, optionDegree }: TypeMoreInfo ) => {

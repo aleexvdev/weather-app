@@ -5,7 +5,7 @@ import { WeatherListItem } from '../../types/Type_Weather';
 interface TypeForescastTodays {
   data: WeatherListItem[];
   handleDayClick: (dt: string) => void;
-  isSelectedDay: string;
+  isSelectedDay: string|number;
 }
 
 export const ForescastTodays = ( { data, handleDayClick, isSelectedDay }: TypeForescastTodays ) => {

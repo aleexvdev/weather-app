@@ -15,6 +15,16 @@ export const fetchLocations = async (searchCity: string, limit: number): Promise
   }
 }
 
+export const fetchLocationsLatLon = async (lat: number, lon: number): Promise<TypeLocation[]> => {
+  try {
+    const response = await axios.get(`${BASE_URL}/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=${API_KEY}`);
+    return response.data;
+  } catch (error) { 
+    console.error('Error al obtener los resultados:', error);
+    return [];
+  }
+}
+
 export const fetchWeatherData = async (lat: number, lon: number): Promise<TypeFetchWeather> => {
   try {
     const url = `${BASE_URL}/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`;

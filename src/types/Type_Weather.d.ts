@@ -24,7 +24,7 @@ export type TypeLocation = {
   lat: number;
   lon: number;
   country: string;
-  state: string;
+  state: string|null;
 }
 
 export type TypeFetchWeather = {

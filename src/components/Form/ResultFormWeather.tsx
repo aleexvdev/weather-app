@@ -28,6 +28,12 @@ export const ResultFormWeather = ( { cityData, weatherData, optionDegree }: Type
     return formatUnixTimestamp(dt, timezone);
   }, [weatherData]);
 
+  if (!cityData) {
+    return (
+      <div>....loading....</div>
+    )
+  }
+
   return (
     <>
       <div className='w-full'>
@@ -54,7 +60,7 @@ export const ResultFormWeather = ( { cityData, weatherData, optionDegree }: Type
               fontSize={25} 
               color={colorIcon}
             />
-            <span className={`${textColorContent} ${isDarkMode ? 'font-medium' : 'font-bold'} tracking-normal`}>Lon.<span className='pl-3'>{cityData.lon}</span></span>
+            <span className={`${textColorContent} ${isDarkMode ? 'font-medium' : 'font-bold'} tracking-normal`}>Lon.<span className='pl-3'>{cityData?.lon}</span></span>
           </div>
         </div>
       </div>

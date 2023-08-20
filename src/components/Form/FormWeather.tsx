@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import IconSearchLocation from '../../icons/IconSearchLocation'
 import IconCurrentLocation from '../../icons/IconCurrentLocation'
-import { fetchLocations } from '../../api/apiweather';
+import { fetchLocations, fetchLocationsLatLon } from '../../api/apiweather';
 import { TypeLocation } from '../../types/Type_Weather';
 import IconCloseCircle from '../../icons/IconCloseCircle';
 
@@ -10,7 +10,7 @@ type TypeFormProps = {
   selectedCity: (city: TypeLocation) => void;
 }
 
-export const FormWeather = ( {selectedCity}: TypeFormProps ) => {
+export const FormWeather = ( { selectedCity }: TypeFormProps ) => {
 
   const [search, setSearch] = useState<string>('');
   const [results, setResults] = useState<TypeLocation[]>([]);
@@ -24,7 +24,6 @@ export const FormWeather = ( {selectedCity}: TypeFormProps ) => {
         setResults([]);
       }
     };
-
     fetchData();
   }, [search])
 
@@ -40,6 +39,28 @@ export const FormWeather = ( {selectedCity}: TypeFormProps ) => {
   const onResetSearch = () => {
     setResults([]);
     setSearch('');
+  }
+
+  const currentLocationBtn = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        location => {
+          const latitude = location.coords.latitude;
+          const longitude = location.coords.longitude;
+          geoLocation(latitude, longitude);
+        }, 
+        error => {
+          console.log('Not found');
+        }
+      )
+    } else {
+      console.error("Geolocation not available in this browser.");
+    }
+  }
+
+  const geoLocation = async (lat:number, lon:number) => {
+    const result = await fetchLocationsLatLon(lat, lon);
+    result.length > 0 && selectedCity(result[0]);
   }
 
   return (
@@ -83,6 +104,7 @@ export const FormWeather = ( {selectedCity}: TypeFormProps ) => {
                 fontSize={22}
                 color='gray'
                 className='hover:text-black'
+                onClick={currentLocationBtn}
               />
             </button>
           </motion.div>

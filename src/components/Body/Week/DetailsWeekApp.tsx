@@ -11,9 +11,9 @@ interface TypeDetailsWeekApp {
 export const DetailsWeekApp = ( { data, optionDegree }: TypeDetailsWeekApp ) => {
 
   const [forecastData, setForecastData] = useState<WeatherListItem[]>([]);
-  const [selectedDay, setSelectedDay] = useState<string>();
-  const [selectedHour, setSelectedHour] = useState<string>('');
-  const [isSelected, setIsSelected] = useState<string>('');
+  const [selectedDay, setSelectedDay] = useState<string|number>();
+  const [selectedHour, setSelectedHour] = useState<string|number>('');
+  const [isSelected, setIsSelected] = useState<string|number>('');
 
   useEffect(() => {
     if (data.length > 0) {

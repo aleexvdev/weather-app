@@ -5,7 +5,7 @@ import { useTheme } from '../../../context/ThemeContext/ThemeContext';
 
 interface TypeContentInfoWeek {
   data: WeatherListItem[];
-  selectedHour: string;
+  selectedHour: string|number;
   onHourClick: (dt: string) => void;
   optionDegree: string;
 }

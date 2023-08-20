@@ -8,25 +8,67 @@ import { TypeFetchWeather, TypeFetchWeatherMain, TypeForescastWeather, TypeLocat
 import { fetchWeatherDataAll } from '../api/apiweather'
 import { Title } from './Title/Title'
 import { useTheme } from '../context/ThemeContext/ThemeContext'
+import { datacountries } from '../data/dataCountries'
 
-const data: TypeLocation = {
-  name: 'Huacho',
+/* const data: TypeLocation = {
+  name: 'Lima',
   lat: -11.108524,
   lon: -77.6103295,
   country: 'PE',
   state: 'Lima'
-};
+}; */
+/* const data: TypeLocation = {
+  name: 'Lima',
+  lat: 40.7399785,
+  lon: -84.105006,
+  country: 'PE',
+  state: 'Lima'
+}; */
 
 export const WeatherApp = () => {
 
   const [activeTabIndex, setActiveTabIndex] = useState(0);
-  const [cityData, setCityData] = useState<TypeLocation>(data);
+  const [cityData, setCityData] = useState<TypeLocation>();
   const [weatherData, setWeatherData] = useState<TypeFetchWeatherMain>();
   const [currentWeather, setCurrentWeather] = useState<TypeFetchWeather>();
   const [forescastWeather, setForescastWeather] = useState<TypeForescastWeather>();
   const [optionDegree, setOptionDegree] = useState<string>('C');
-
   const { backgroundContent } = useTheme();
+
+  useEffect(() => {
+    if (!cityData) {
+      const randomIndex = Math.floor(Math.random() * datacountries.length);
+      const randomLocation: TypeLocation = datacountries[randomIndex];
+      setCityData(randomLocation);
+    }
+  }, []);
+  
+
+  useEffect(() => {
+    if (cityData) {
+      const { lat, lon } = cityData;
+      const fetchData = async () => {
+        const response = await fetchWeatherDataAll(lat, lon);
+        if (response.status === 200) {
+          const { dt, timezone, weather, main } = response.data.current;
+          const { description, icon } = weather[0];
+          const { temp, feels_like } = main;
+  
+          setCurrentWeather(response.data.current);
+          setForescastWeather(response.data.forecast);
+          setWeatherData({
+            description,
+            temp,
+            feels_like,
+            dt,
+            timezone,
+            icon
+          });
+        }
+      }
+      fetchData();
+    }
+  }, [cityData]);
 
   const handleTabChange = (index: number) => {
     setActiveTabIndex(index);
@@ -40,30 +82,6 @@ export const WeatherApp = () => {
     setOptionDegree(value);
   }
 
-  useEffect(() => {
-    const { lat, lon } = cityData;
-    const fetchData = async () => {
-      const response = await fetchWeatherDataAll(lat, lon);
-      if (response.status === 200) {
-        const { dt, timezone, weather, main } = response.data.current;
-        const { description, icon } = weather[0];
-        const { temp, feels_like } = main;
-
-        setCurrentWeather(response.data.current);
-        setForescastWeather(response.data.forecast);
-        setWeatherData({
-          description,
-          temp,
-          feels_like,
-          dt,
-          timezone,
-          icon
-        });
-      }
-    }
-    fetchData();
-  }, [cityData]);
-
   return (
     <section className={`h-[100%] md:min-h-[550px] ${backgroundContent} rounded-3xl mt-10`}>
       <div className='flex md:flex-row w-full flex-col'>
@@ -71,7 +89,7 @@ export const WeatherApp = () => {
           <div className='md:my-6 md:mx-5 mx-3 my-5'>
             <Title changeOption={changeOption} />
             <FormWeather selectedCity={selectedCity} />
-            <ResultFormWeather cityData={cityData} weatherData={weatherData} optionDegree={optionDegree} />
+            {cityData&&<ResultFormWeather cityData={cityData} weatherData={weatherData} optionDegree={optionDegree} />}
             <Footer />
           </div>
         </div>
