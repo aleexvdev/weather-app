@@ -6,10 +6,9 @@ import { CardConfig } from '../Items/CardConfig';
 
 interface TypeTitle {
   changeOption: (value: string) => void;
-  optionDegree: string;
 }
 
-export const Title = ( { changeOption, optionDegree }: TypeTitle ) => {
+export const Title = ( { changeOption }: TypeTitle ) => {
 
   const [showCardConfig, setShowCardConfig] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);

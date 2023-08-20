@@ -13,7 +13,7 @@ export const App = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className={`${backgroundMain} absolute inset-0`}
+        className={`${backgroundMain} absolute md:inset-0`}
       >
         <main className='mx-auto md:max-w-7xl max-w-[95%]'>
           <WeatherApp />

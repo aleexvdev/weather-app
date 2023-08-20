@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
 import IconWiCelsius from '../../icons/IconWiCelsius'
 import IconWiFahrenheit from '../../icons/IconWiFahrenheit'
-import { IconMapLocation } from '../../icons/IconMapLocation'
 import { useTheme } from '../../context/ThemeContext/ThemeContext';
 
 interface TypeOptionsWeather {
