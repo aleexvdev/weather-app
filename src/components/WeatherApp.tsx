@@ -69,7 +69,7 @@ export const WeatherApp = () => {
       <div className='flex md:flex-row w-full flex-col'>
         <div className='md:w-[28%]'>
           <div className='md:my-6 md:mx-5 mx-3 my-5'>
-            <Title />
+            <Title changeOption={changeOption} optionDegree={optionDegree} />
             <FormWeather selectedCity={selectedCity} />
             <ResultFormWeather cityData={cityData} weatherData={weatherData} optionDegree={optionDegree} />
             <Footer />
