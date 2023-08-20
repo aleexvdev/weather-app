@@ -19,7 +19,7 @@ export const OtherOptionsWeather = ( { changeOption, optionDegree }: TypeOptions
   const { isDarkMode, toggleTheme } = useTheme();
 
   return (
-    <div className='w-full'>
+    <div className='w-full hidden md:block'>
       <div className='flex flex-row items-center justify-end h-10 gap-4'>
         <button 
           className={`rounded-xl px-2 h-10 w-10 ${optionDegree === 'C' ? 'bg-[#0338a1]' : `${isDarkMode ? 'hover:bg-gray-800/80' : 'hover:bg-gray-200/80'}` }`}
@@ -41,15 +41,6 @@ export const OtherOptionsWeather = ( { changeOption, optionDegree }: TypeOptions
             className={`${optionDegree === 'F' ? 'text-white' : `${isDarkMode ? 'text-white/80' : 'text-black'}`}`}
           />
         </button>
-        {/* <button 
-          className='rounded-xl px-2 h-10 w-10 hover:bg-gray-200/80'
-          title='Map'
-        >
-          <IconMapLocation 
-            fontSize={25} 
-            color='black'
-          />
-        </button> */}
         <div 
           className="flex items-center h-screen cursor-pointer" 
           onClick={toggleTheme}

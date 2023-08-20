@@ -23,7 +23,7 @@ export const WeekBody = ( { forescast, optionDegree }: TypeWeekBody ) => {
   return (
     <div>
       <div className='w-full'>
-        <div className='my-1 px-1 md:px-3 flex flex-col h-full items-center justify-between'>
+        <div className='my-1 md:my-2 px-1 md:px-3 flex flex-col h-full items-center justify-between'>
           <DetailsWeekApp data={forescastWeatherData} optionDegree={optionDegree} />
         </div>
       </div>

@@ -32,7 +32,7 @@ export const MoreInfoBodyWeek = ( { data, selectedHour, optionDegree }: TypeMore
   }
 
   return (
-    <div className='w-full max-h-[380px]'>
+    <div className='w-full h-full md:max-h-[380px]'>
       <div className='flex flex-col md:flex-row items-center justify-between'>
         <div className='md:w-[35%] md:mx-3'>
           <div className='flex flex-col items-center justify-center'>
@@ -41,7 +41,7 @@ export const MoreInfoBodyWeek = ( { data, selectedHour, optionDegree }: TypeMore
               <span className={`text-xl font-bold ${textColorContent} tracking-normal`}>{formatDay.split(', ')[1]}</span>
             </div>
             <div className='w-full h-full'>
-              <img src={`../../assets/svg/${info[0].weather[0].icon}.svg`} alt={info[0].weather[0].description} className='inline-block h-44 w-44' />
+              <img src={`../../assets/svg/${info[0].weather[0].icon}.svg`} alt={info[0].weather[0].description} className='inline-block h-40 w-40' />
             </div>
             <span className={`text-3xl ${textColorContent} font-semibold`}>{temp} °{optionDegree}</span>
             <div className='flex flex-col items-center justify-center pt-1'>

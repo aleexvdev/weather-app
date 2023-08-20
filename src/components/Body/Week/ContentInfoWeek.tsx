@@ -24,9 +24,9 @@ export const ContentInfoWeek = ( { data, selectedHour, onHourClick, optionDegree
   const sortDataByHour = orderDataByHour(data);
 
   return (
-    <div className='w-full min-h-[430px] mt-5 md:mt-3'>
+    <div className='w-full min-h-screen md:min-h-[433px] mt-5 md:my-3'>
       <h2 className={`mt-4 text-xl ${textColorContent} tracking-wide font-medium`}>Highlights of the Week</h2>
-      <div className='flex flex-col md:flex-row items-center justify-between min-h-[380px]'>
+      <div className='flex flex-col md:flex-row items-center justify-between min-h-[380px] md:min-h-[380px]'>
         <div className='w-full md:w-[60px] md:max-h-[410px]'>
           <div className='flex flex-row flex-wrap md:flex-col items-center justify-center gap-4 py-5 md:py-0'>
             {sortDataByHour.map(hour => (
@@ -45,48 +45,15 @@ export const ContentInfoWeek = ( { data, selectedHour, onHourClick, optionDegree
             ))}
           </div>
         </div>
-        <div className='w-full h-full'>
+        <div className='w-full md:pb-0 pb-5'>
           <MoreInfoBodyWeek data={data} selectedHour={selectedHour} optionDegree={optionDegree} />
         </div>
       </div>
-
     </div>
   )
-
-  /* return (
-    <div className='w-full min-h-[430px] mt-4'>
-      <h2 className={`mt-4 text-xl ${textColorContent} tracking-wide font-medium`}>Highlights of the Week</h2>
-      <div className='flex flex-row items-center justify-between min-h-[390px]'>
-        <div className='w-[60px] max-h-[410px]'>
-          <div className='flex flex-col items-center justify-center gap-4'>
-            {sortDataByHour.map(hour => (
-              <motion.button
-                key={hour.dt_txt}
-                className={`text-sm w-12 px-2 py-1 rounded-lg ${
-                  selectedHour === hour.dt_txt 
-                  ? `${isDarkMode ? 'bg-[#80C6FF] text-black font-medium' : 'bg-[#0338a1] text-white font-medium'}` 
-                  : `${isDarkMode ? 'text-white/70 font-medium hover:text-[#80C6FF]' : 'text-black font-semibold hover:text-[#0338a1]'}`
-                }`}
-                onClick={() => onHourClick(hour.dt_txt)}
-                whileTap={{ scale: 0.9, opacity: 0.8 }}
-              >
-                {formatHour(hour.dt_txt)}
-              </motion.button>
-            ))}
-          </div>
-        </div>
-        <div className='w-full h-full'>
-          <div className='flex flex-row items-center justify-between flex-wrap gap-2'>
-            {data && <MoreInfoBodyWeek data={data} selectedHour={selectedHour} optionDegree={optionDegree} />}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-   */
 }
 
-function orderDataByHour(data: WeatherListItem[]): WeatherListItem[] {
+const orderDataByHour = (data: WeatherListItem[]): WeatherListItem[] => {
   return data.slice().sort((a, b) => {
     const hourA = parseInt(a.dt_txt.split(' ')[1].split(':')[0], 10);
     const hourB = parseInt(b.dt_txt.split(' ')[1].split(':')[0], 10);
