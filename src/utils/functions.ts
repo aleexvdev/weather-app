@@ -183,43 +183,6 @@ export function getDayNameAbrevInEnglish(dateString: string): string {
   return daysInEnglish[dayIndex];
 }
 
-/* export function getArrayForecastDays(data: WeatherListItem[]): TypeWeekDays[] | any {
-
-  var next_date = getTomorrowDate();
-  var end_date = getFiveDaysLaterDate();
-  const startDate = new Date(next_date); 
-  const endDate = new Date(end_date);
-  
-  // console.log('Result Current day: ', currentDate);
-  // console.log('Result Tomorrow : ', startDate);
-  // console.log('Result 5 after days: ', endDate);
-
-  const formattedData = [];
-  for (let date = startDate; date <= endDate; date.setDate(date.getDate() + 1)) {
-    const date_format = formatDateToISO(date);
-    const filteredData = data.filter((item) => {
-      const itemDate = item.dt_txt;
-      return itemDate === date_format;
-    });
-
-    if (filteredData.length > 0) {
-      const dateletter = getDayNameInEnglish(date_format);
-      const dateletterabrev = getDayNameAbrevInEnglish(date_format);
-      formattedData.push({
-        dayweek: dateletter,
-        dayweekabrev: dateletterabrev,
-        climate: filteredData[0].weather[0].description,
-        temp: kelvinToCelsius(filteredData[0].main.temp).toFixed(2),
-        feelslike: kelvinToCelsius(filteredData[0].main.feels_like).toFixed(2),
-        icon: filteredData[0].weather[0].icon,
-        dt: filteredData[0].dt,
-        dttext: filteredData[0].dt_txt
-      });
-    }
-  }
-  // console.log(formattedData);
-  return formattedData.length > 0 ? formattedData : [{}];
-} */
 export function getArrayForecastDays(data: WeatherListItem[]): TypeWeekDays[] | any {
   const formattedData: TypeWeekDays[] = [];
 
