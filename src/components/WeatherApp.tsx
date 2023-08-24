@@ -10,21 +10,6 @@ import { Title } from './Title/Title'
 import { useTheme } from '../context/ThemeContext/ThemeContext'
 import { datacountries } from '../data/dataCountries'
 
-/* const data: TypeLocation = {
-  name: 'Lima',
-  lat: -11.108524,
-  lon: -77.6103295,
-  country: 'PE',
-  state: 'Lima'
-}; */
-/* const data: TypeLocation = {
-  name: 'Lima',
-  lat: 40.7399785,
-  lon: -84.105006,
-  country: 'PE',
-  state: 'Lima'
-}; */
-
 export const WeatherApp = () => {
 
   const [activeTabIndex, setActiveTabIndex] = useState(0);

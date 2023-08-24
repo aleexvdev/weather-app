@@ -1,9 +1,22 @@
 import React, { useMemo } from 'react'
 import { DetailsBodyToday } from './DetailsBodyToday'
-import { formatDate, kelvinToCelsius, secondsToTimezone } from '../../../utils/functions'
+import { formatDate, formatUnixTimestamp, kelvinToCelsius, secondsToTimezone } from '../../../utils/functions'
 import { TypeFetchWeather } from '../../../types/Type_Weather'
 import { useTheme } from '../../../context/ThemeContext/ThemeContext'
+import { SunriseSunsetStatus } from '../../WeatherComponents/SunriseSunsetStatus'
+import { CardMoreData } from '../../Items/CardMoreData'
 
+interface TypeCardMoreData {
+  dayformat: string;
+  utc: string;
+  feelsLike: number|string;
+  clouds: number|string;
+  description: string;
+  icon: string;
+  sunset: string[];
+  sunrise: string[];
+  optionDegree: string;
+}
 
 interface TypeFirstBody {
   data: TypeFetchWeather;
@@ -11,7 +24,7 @@ interface TypeFirstBody {
 }
 export const FistBodyToday = ( { data, optionDegree }: TypeFirstBody ) => {
 
-  const { textColorContent, textColorGray, textColorContent70 } = useTheme();
+  const { textColorContent, textColorGray } = useTheme();
 
   const { name: city, main, dt, timezone, weather, clouds, wind, visibility, rain, snow, sys } = data;
   const { feels_like, temp } = main;
@@ -31,6 +44,22 @@ export const FistBodyToday = ( { data, optionDegree }: TypeFirstBody ) => {
     return kelvinToCelsius(temperature).toFixed(2);
   }, [temp]);
 
+
+  const sunrise = formatUnixTimestamp(sys.sunrise, timezone);
+  const sunset = formatUnixTimestamp(sys.sunset, timezone);
+
+  const datacard:TypeCardMoreData = {
+    dayformat: dayformat,
+    utc: utc,
+    feelsLike: feelsLike,
+    clouds: clouds.all,
+    description: description,
+    icon: icon,
+    sunset: sunset,
+    sunrise: sunrise,
+    optionDegree: optionDegree
+  };
+
   return (
     <div>
       <div className='md:mt-2'>
@@ -49,17 +78,8 @@ export const FistBodyToday = ( { data, optionDegree }: TypeFirstBody ) => {
             </div>
           </div>
           <div className='col-span-1 row-span-1 md:col-span-1 md:row-span-1 order-2 md:order-3'>
-            <div className='w-full flex flex-col items-center md:items-end justify-center'>
-              <div className={`w-full flex flex-col items-end md:items-end justify-center ${textColorContent70} h-56`}>
-                <span className='text-[14px]'>{dayformat}</span>
-                <span className='text-[14px]'>Timezone {utc}</span>
-                <span className='text-[14px]'>Feels like {feelsLike} °{optionDegree}</span>
-                <span className='text-[14px]'>Cloudiness {clouds.all}%</span>
-                <div className='flex flex-row items-center justify-center mt-3 gap-2'>
-                  <img src={`https://openweathermap.org/img/w/${icon}.png`} alt={description} className='inline-block h-9 w-9' />
-                  <span className='text-[14px]'>{description}</span>
-                </div>
-              </div>
+            <div className='w-full flex flex-col items-center md:items-end justify-center h-56'>
+              <CardMoreData data={datacard} />
             </div>
           </div>
         </div>

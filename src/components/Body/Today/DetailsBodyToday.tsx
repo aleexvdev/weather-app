@@ -1,13 +1,11 @@
-import React from 'react'
 import { WindStatus } from '../../WeatherComponents/WindStatus'
 import { VisibilityStatus } from '../../WeatherComponents/VisibilityStatus'
 import { HumidityStatus } from '../../WeatherComponents/HumidityStatus'
 import { AtmosPressure } from '../../WeatherComponents/AtmosPressure'
 import { RoomTemperature } from '../../WeatherComponents/RoomTemperature'
 import { TypeMainWProp, TypeRainWProp, TypeSnowWProp, TypeWeatherWProp, TypeWindWProp } from '../../../types/Type_Weather'
-import { formatUnixTimestamp } from '../../../utils/functions'
-import { SunriseSunsetStatus } from '../../WeatherComponents/SunriseSunsetStatus'
 import { useTheme } from '../../../context/ThemeContext/ThemeContext'
+import { CarProfile } from '../../Items/CarProfile'
 
 interface TypeSys {
   country: string;
@@ -30,8 +28,6 @@ interface TypeDetailsWeather {
 export const DetailsBodyToday = ( { main, weather, wind, visibility, rain, snow, optionDegree, sys, timezone }: TypeDetailsWeather ) => {
 
   const { textColorContent } = useTheme();
-  const sunrise = formatUnixTimestamp(sys.sunrise, timezone);
-  const sunset = formatUnixTimestamp(sys.sunset, timezone);
 
   return (
     <div className='w-full mt-5 md:mt-0'>
@@ -42,7 +38,7 @@ export const DetailsBodyToday = ( { main, weather, wind, visibility, rain, snow,
         <RoomTemperature props={main} optionDegree={optionDegree} />
         <VisibilityStatus props={visibility} />
         <HumidityStatus props={main.humidity} />
-        <SunriseSunsetStatus sunrise={sunrise} sunset={sunset} />
+        <CarProfile />
       </div>
     </div>
   )
