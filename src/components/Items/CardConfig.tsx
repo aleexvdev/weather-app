@@ -49,10 +49,10 @@ export const CardConfig = ( { changeOption, closeCardConfig }: TypeCardConfig ) 
             title='Celsius'
           >
             <IconWiCelsius 
-              fontSize={25} 
+              fontSize={20} 
               className='w-12'
             /> 
-            <span className='text-[16px]'>Changue to Celsius</span>
+            <span className='text-[15px]'>Changue to Celsius</span>
           </button>
         </motion.li>
         <motion.li 
@@ -66,10 +66,10 @@ export const CardConfig = ( { changeOption, closeCardConfig }: TypeCardConfig ) 
             title='Fahrenheit'
           >
             <IconWiFahrenheit 
-              fontSize={25} 
+              fontSize={20} 
               className='w-12'
             /> 
-            <span className='text-[16px]'>Changue to Fahrenheit</span>
+            <span className='text-[15px]'>Changue to Fahrenheit</span>
           </button>
         </motion.li>
         <motion.li 
@@ -79,8 +79,7 @@ export const CardConfig = ( { changeOption, closeCardConfig }: TypeCardConfig ) 
         >
           <div className='flex justify-start items-center' onClick={toggleTheme}>
             <div 
-              className="flex items-center cursor-pointer w-20" 
-              
+              className="flex items-center cursor-pointer w-auto"
             >
               <div className={`relative w-14 h-7 rounded-full ${isDarkMode ? 'bg-[#4dafff]' : 'bg-[#0338A1]' }`}>
                 <motion.div
@@ -91,7 +90,7 @@ export const CardConfig = ( { changeOption, closeCardConfig }: TypeCardConfig ) 
                 />
               </div>
             </div>
-            <span className='text-[16px]'>Changue to Theme</span>
+            <span className='text-[15px] ml-3'>Changue to Theme</span>
           </div>
         </motion.li>
       </motion.ul>

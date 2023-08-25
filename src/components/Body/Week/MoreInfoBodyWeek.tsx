@@ -6,7 +6,7 @@ import { HumidityStatus } from '../../WeatherComponents/HumidityStatus';
 import { RoomTemperature } from '../../WeatherComponents/RoomTemperature';
 import { formatDateTxt, kelvinToCelsius, kelvinToFahrenheit } from '../../../utils/functions';
 import { useTheme } from '../../../context/ThemeContext/ThemeContext';
-import { CarProfile } from '../../Items/CarProfile';
+import { CardProfile } from '../../Items/CardProfile';
 
 interface TypeMoreInfo {
   data: WeatherListItem[];
@@ -61,7 +61,7 @@ export const MoreInfoBodyWeek = ( { data, selectedHour, optionDegree }: TypeMore
             <AtmosPressure props={info[0]?.main} />
             <VisibilityStatus props={info[0]?.visibility} />
             <HumidityStatus props={info[0]?.main.humidity} />
-            <CarProfile />
+            <CardProfile />
           </div>
         </div>
       </div>

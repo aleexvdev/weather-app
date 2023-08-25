@@ -5,7 +5,7 @@ import { AtmosPressure } from '../../WeatherComponents/AtmosPressure'
 import { RoomTemperature } from '../../WeatherComponents/RoomTemperature'
 import { TypeMainWProp, TypeRainWProp, TypeSnowWProp, TypeWeatherWProp, TypeWindWProp } from '../../../types/Type_Weather'
 import { useTheme } from '../../../context/ThemeContext/ThemeContext'
-import { CarProfile } from '../../Items/CarProfile'
+import { CardProfile } from '../../Items/CardProfile'
 
 interface TypeSys {
   country: string;
@@ -38,7 +38,7 @@ export const DetailsBodyToday = ( { main, weather, wind, visibility, rain, snow,
         <RoomTemperature props={main} optionDegree={optionDegree} />
         <VisibilityStatus props={visibility} />
         <HumidityStatus props={main.humidity} />
-        <CarProfile />
+        <CardProfile />
       </div>
     </div>
   )
