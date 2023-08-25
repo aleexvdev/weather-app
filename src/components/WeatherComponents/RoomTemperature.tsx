@@ -31,7 +31,7 @@ export const RoomTemperature = ( { props, optionDegree }: TypeRoomTemperaturePro
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className='bg-[#0338a1] w-[180px] h-[135px] rounded-lg shadow-md shadow-black py-3 px-3'
+      className='bg-[#0338a1] md:w-[180px] md:h-[135px] rounded-lg shadow-md shadow-black py-3 px-3 w-full h-[100px]'
     >
       <div className='flex flex-col items-start justify-between h-full'>
         <motion.div 
@@ -44,28 +44,30 @@ export const RoomTemperature = ( { props, optionDegree }: TypeRoomTemperaturePro
           />
           <span className='text-lg text-white font-semibold'>Temperatures</span>
         </motion.div>
-        <motion.div 
-          variants={itemVariants}
-          className='flex flex-row items-center justify-start gap-2 pl-1'
-        >
-          <IconTemperatureMax 
-            fontSize={20} 
-            color='white'
-          />
-          <span className='text-3xl text-white font-bold'>{tempmax}</span>
-          <span className='text-gray-200/50'>máx</span>
-        </motion.div>
-        <motion.div 
-          variants={itemVariants}
-          className='flex flex-row items-center justify-start gap-2 pl-1'
-        >
-          <IconTemperatureMin 
-            fontSize={20} 
-            color='white'
-          />
-          <span className='text-3xl text-white font-bold'>{tempmin}</span>
-          <span className='text-gray-200/50'>min</span>
-        </motion.div>
+        <div className='flex md:flex-col flex-row items-center md:items-start justify-between gap-2 md:gap-0'>
+          <motion.div 
+            variants={itemVariants}
+            className='flex flex-row items-center justify-start gap-1 md:gap-2 pl-1'
+          >
+            <IconTemperatureMax 
+              fontSize={20} 
+              color='white'
+            />
+            <span className='text-3xl text-white font-bold'>{tempmax}</span>
+            <span className='text-gray-200/50'>máx</span>
+          </motion.div>
+          <motion.div 
+            variants={itemVariants}
+            className='flex flex-row items-center justify-start gap-1 md:gap-2 pl-1'
+          >
+            <IconTemperatureMin 
+              fontSize={20} 
+              color='white'
+            />
+            <span className='text-3xl text-white font-bold'>{tempmin}</span>
+            <span className='text-gray-200/50'>min</span>
+          </motion.div>
+        </div>
       </div>
     </motion.div>
   )

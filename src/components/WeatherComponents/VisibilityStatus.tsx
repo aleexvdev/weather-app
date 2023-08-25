@@ -26,7 +26,7 @@ export const VisibilityStatus = ( { props }: TypeVisibilityProp ) => {
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className='bg-[#0338a1] w-[180px] h-[135px] rounded-lg shadow-md shadow-black py-3 px-4'
+      className='bg-[#0338a1] md:w-[180px] md:h-[135px] rounded-lg shadow-md shadow-black py-3 px-4 w-full h-[100px]'
     >
       <div className='flex flex-col items-start justify-between h-full'>
         <motion.div 
@@ -39,23 +39,25 @@ export const VisibilityStatus = ( { props }: TypeVisibilityProp ) => {
           />
           <span className='text-lg text-white font-semibold'>Visibility</span>
         </motion.div>
-        <motion.div 
-          variants={itemVariants}
-          className='flex flex-row items-center justify-start gap-2'
-        >
-          <span className='text-3xl text-white font-bold'>{props}</span>
-          <span className='text-gray-200/50'>meters</span>
-        </motion.div>
-        <motion.div 
-          variants={itemVariants}
-          className='flex flex-row items-center justify-start gap-2'
-        >
-          <IconWeatherVis 
-            color='white'
-            fontSize={22} 
-          />
-          <span className='text-white'>{vision}</span>
-        </motion.div>
+        <div className='flex md:flex-col flex-row items-center md:items-start justify-center gap-6 md:gap-0'>
+          <motion.div 
+            variants={itemVariants}
+            className='flex flex-row items-center justify-start gap-2'
+          >
+            <span className='text-3xl text-white font-bold'>{props}</span>
+            <span className='text-gray-200/50'>meters</span>
+          </motion.div>
+          <motion.div 
+            variants={itemVariants}
+            className='flex flex-row items-center justify-start gap-2 md:mt-[13px]'
+          >
+            <IconWeatherVis 
+              color='white'
+              fontSize={22} 
+            />
+            <span className='text-white'>{vision}</span>
+          </motion.div>
+        </div>
       </div>
     </motion.div>
   )

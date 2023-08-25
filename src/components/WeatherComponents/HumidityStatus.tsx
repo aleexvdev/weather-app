@@ -23,30 +23,29 @@ export const HumidityStatus = ( { props }: TypeHumidityProp ) => {
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className='bg-[#0338a1] w-[180px] h-[135px] rounded-lg shadow-md shadow-black py-3 px-4'
+      className='bg-[#0338a1] md:w-[180px] md:h-[135px] rounded-lg shadow-md shadow-black py-3 px-4 w-full h-[100px]'
     >
-      <div className='flex flex-col items-start justify-between h-full'>
-        <motion.div 
-          variants={itemVariants}
-          className='flex items-center justify-start gap-3'
-        >
-          <IconHumidityStatus 
-            color='white'
-            fontSize={25} 
-          />
-          <span className='text-lg text-white font-semibold'>Humidity</span>
-        </motion.div>
-        <div className='flex items-center justify-start gap-2'>
-          <motion.div 
-            variants={itemVariants}
-            className='flex flex-col items-start justify-start'
-          >
-            <span className='text-3xl text-white font-bold'>{props} %</span>
-            <span className='text-gray-200/50'>Humid</span>
-          </motion.div>
+      <motion.div 
+        variants={itemVariants}
+        className='flex items-center justify-start gap-3'
+      >
+        <IconHumidityStatus 
+          color='white'
+          fontSize={25} 
+        />
+        <span className='text-lg text-white font-semibold'>Humidity</span>
+      </motion.div>
+      <div className='grid grid-cols-3 grid-rows-1 md:grid-rows-2 gap-0 md:mt-2 max-h-full'>
+        <div className='col-span-1 md:col-span-2 row-span-1'>
+          <span className='text-3xl text-white font-bold flex items-center justify-start md:items-end h-full'>{props} %</span>
+        </div>
+        <div className='col-span-1 md:col-span-2 row-span-1'>
+          <span className='text-gray-200/50 flex items-center md:items-end md:justify-start justify-center h-full text-xl'>Humid</span>
+        </div>
+        <div className='col-span-1 row-span-1 md:col-start-3 md:col-end-4 md:row-start-1 md:row-end-3 flex items-center justify-center'>
           <motion.div
             variants={itemVariants}
-            className='w-[25px] h-16 bg-transparent border border-sky-200/50 rounded-xl ml-10'
+            className='w-[25px] h-16 bg-transparent border border-sky-200/50 rounded-xl -top-5 md:top-0 ml-5 md:ml-0'
             style={{ position: 'relative' }}
           >
             <div
@@ -60,7 +59,7 @@ export const HumidityStatus = ( { props }: TypeHumidityProp ) => {
             ></div>
           </motion.div>
         </div>
-      </div>
+        </div>
     </motion.div>
   )
 }
