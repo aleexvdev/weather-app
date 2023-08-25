@@ -1,7 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "./context/ThemeContext/ThemeContext";
 import { WeatherApp } from "./components/WeatherApp";
-import { MainFooter } from "./components/Footer/MainFooter";
 
 export const App = () => {
 

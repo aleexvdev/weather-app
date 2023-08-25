@@ -68,7 +68,7 @@ export const WeatherApp = () => {
   }
 
   return (
-    <section className={`h-[100%] md:min-h-[550px] ${backgroundContent} rounded-3xl mt-10`}>
+    <section className={`h-[100%] md:min-h-[550px] ${backgroundContent} rounded-3xl mt-10 md:mb-0 mb-10`}>
       <div className='flex md:flex-row w-full flex-col'>
         <div className='md:w-[28%]'>
           <div className='md:my-6 md:mx-5 mx-3 my-5'>

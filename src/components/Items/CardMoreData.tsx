@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion'
 import { IconSunrise, IconSunset } from '../../icons/SunriseSunsetIcons/IconSunriseSunset';
-import { useTheme } from '../../context/ThemeContext/ThemeContext';
 
 interface TypeCardMoreData {
   dayformat: string;
@@ -35,11 +34,11 @@ export const CardMoreData = ( { data }: TypeCard ) => {
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className='bg-[#0338a1] w-full md:w-[65%] h-full rounded-lg shadow-md shadow-black py-1 px-2 md:py-3 md:px-4 text-white'
+      className='bg-[#0338a1] w-full md:w-[65%] h-full rounded-lg shadow-md shadow-black py-1 px-2 md:py-3 text-white'
     >
       <div className='flex flex-col items-center justify-center h-full'>
         <div 
-          className={`w-full flex flex-col items-center md:items-end justify-center`}
+          className={`w-full flex flex-col items-center justify-center`}
         >
           <motion.p variants={itemVariants} className='text-[14px]'>{data.dayformat}</motion.p>
           <motion.p variants={itemVariants} className='text-[14px]'>Timezone {data.utc}</motion.p>
