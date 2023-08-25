@@ -1,39 +1,23 @@
 import React from 'react'
-import IconBxlFacebook from '../../icons/SocialNetworksIcons/IconBxlFacebook';
-import IconBxlInstagram from '../../icons/SocialNetworksIcons/IconBxlInstagram';
-import IconBxlGithub from '../../icons/SocialNetworksIcons/IconBxlGithub';
-import IconBxlLinkedin from '../../icons/SocialNetworksIcons/IconBxlLinkedin';
 import { TypeSocialNetworks } from '../../types/Type_Weather';
 
 type TypePropsSocial = {
   props: TypeSocialNetworks;
 }
 
-type TypeIconSocialNetwork = {
-  [key: string]: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
-};
-
-
-const socialNetworkIcons: TypeIconSocialNetwork = {
-  Facebook: IconBxlFacebook,
-  Instagram: IconBxlInstagram,
-  LinkedIn: IconBxlLinkedin,
-  Github: IconBxlGithub,
-};
-
 export const ComponentSocialNetwork = ( {props}: TypePropsSocial ) => {
 
-  const { id, social_network, url } = props;
-
-  const renderIcon = (social: string) => {
-    const IconComponent = socialNetworkIcons[social];
-    return IconComponent ? <IconComponent fontSize={28} key={social} className={'text-black'} /> : null;
-  };
+  const { id, social_network, url, icon } = props;
 
   return (
-    <div key={id}>
-      <a href={url}>
-        {renderIcon(social_network)}
+    <div key={id} className='flex items-center justify-center'>
+      <a href={url} target='_blank' rel='noreferrer'>
+        <img 
+          src={`../../assets/social svg/${icon}.svg`} 
+          alt={social_network} 
+          title={social_network} 
+          className='inline-block w-10 h-10 md:w-8 md:h-8'
+        />
       </a>
     </div>
   )

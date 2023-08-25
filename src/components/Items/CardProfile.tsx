@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { socialNetworks } from '../../data/socialNetworks';
 import { ComponentSocialNetwork } from '../Footer/ComponentSocialNetwork';
+import  Imgprofile  from '../../img/profile.png';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -18,17 +19,17 @@ export const CardProfile = () => {
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className='w-[180px] h-[135px] rounded-lg bg-gradient-to-br from-green-200 via-green-400 to-teal-400 shadow-md shadow-black py-3 px-4 relative'
+      className='w-full md:w-[180px] md:h-[135px] h-[100px] rounded-lg bg-gradient-to-br from-green-200 via-green-400 to-teal-400 shadow-md shadow-black py-2 md:py-3 px-3 md:px-4 relative'
     >
-      <div className='grid grid-cols-1 grid-rows-4 gap-0 w-full'>
-        <h2 className='col-span-1 row-span-1 text-[14px] font-bold text-gray-500/60'>Dev</h2>
-        <p className='col-span-1 row-span-1 text-[16px] font-bold'>Alexander Valverde</p>
-        <p className='col-span-1 row-span-1 text-[12px] font-semibold text-gray-800/80'>@alexvdev</p>
-        <div className='absolute z-30 -right-16 top-7'>
-          <img src="" alt="" className='rounded-lg w-20 h-20' />
+      <div className='grid md:grid-cols-1 md:grid-rows-4 grid-cols-3 grid-rows-3 gap-0 w-full h-full'>
+        <h2 className='col-span-3 row-span-1 md:col-span-1 md:row-span-1 text-[14px] font-bold text-gray-500/60'>Dev</h2>
+        <p className='col-span-3 row-span-1 md:col-span-1 md:row-span-1 text-[18px] md:text-[16px] font-bold'>Alexander Valverde</p>
+        <p className='col-span-1 row-span-1 md:col-span-1 md:row-span-1 text-[14px] md:text-[12px] font-semibold text-gray-800/80 flex items-center justify-start md:pb-2'>@alexvdev</p>
+        <div className='absolute z-30 right-2 top-2.5 md:-right-16 md:top-7 bg-gradient-to-br from-blue-600 via-blue-400 to-cyan-300 rounded-lg'>
+          <img src={Imgprofile} alt="" className='rounded-lg w-20 h-20' />
         </div>
         <div className='col-span-1 row-span-1'>
-          <div className='flex items-center justify-center w-full gap-1'>
+          <div className='flex items-center justify-center w-full h-full gap-1'>
             {
               socialNetworks.map((social) => (
                 <ComponentSocialNetwork key={social.id} props={social} />
