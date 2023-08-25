@@ -30,9 +30,9 @@ export const DetailsBodyToday = ( { main, weather, wind, visibility, rain, snow,
   const { textColorContent } = useTheme();
 
   return (
-    <div className='w-full mt-5 md:mt-0'>
+    <div className='w-full my-5 md:mt-0 md:mb-5'>
       <h2 className={`py-3 text-xl ${textColorContent} tracking-wide font-medium`}>Today's Highlights</h2>
-      <div className='flex flex-row items-center justify-center gap-y-5 gap-x-16 flex-wrap py-2'>
+      <div className='flex flex-row items-center justify-center gap-y-5 gap-x-16 flex-wrap mt-6 md:mt-0'>
         <WindStatus props={wind} />
         <AtmosPressure props={main} />
         <RoomTemperature props={main} optionDegree={optionDegree} />

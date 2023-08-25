@@ -24,9 +24,9 @@ export const ContentInfoWeek = ( { data, selectedHour, onHourClick, optionDegree
   const sortDataByHour = orderDataByHour(data);
 
   return (
-    <div className='w-full min-h-screen md:min-h-[433px] mt-5 md:py-3'>
-      <h2 className={`mt-4 text-xl ${textColorContent} tracking-wide font-medium`}>Highlights of the Week</h2>
-      <div className='flex flex-col md:flex-row items-center justify-between min-h-[380px] md:min-h-[380px] bg-white'>
+    <div className='w-full min-h-screen md:min-h-[433px] mt-5 md:mt-0 md:py-2'>
+      <h2 className={`mt-5 md:mt-9 text-xl ${textColorContent} tracking-wide font-medium`}>Highlights of the Week</h2>
+      <div className='flex flex-col md:flex-row items-center justify-between min-h-[380px] md:min-h-[380px]'>
         <div className='w-full md:w-[60px] md:max-h-[410px]'>
           <div className='flex flex-row flex-wrap md:flex-col items-center justify-center gap-4 py-5 md:py-0'>
             {sortDataByHour.map(hour => (
@@ -45,7 +45,7 @@ export const ContentInfoWeek = ( { data, selectedHour, onHourClick, optionDegree
             ))}
           </div>
         </div>
-        <div className='md:pb-0 pb-5'>
+        <div className='md:pb-0 pb-5 md:mb-4'>
           <MoreInfoBodyWeek data={data} selectedHour={selectedHour} optionDegree={optionDegree} />
         </div>
       </div>
