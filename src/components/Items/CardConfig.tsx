@@ -52,7 +52,7 @@ export const CardConfig = ( { changeOption, closeCardConfig }: TypeCardConfig ) 
               fontSize={25} 
               className='w-12'
             /> 
-            Changue to Celsius
+            <span className='text-[16px]'>Changue to Celsius</span>
           </button>
         </motion.li>
         <motion.li 
@@ -69,7 +69,7 @@ export const CardConfig = ( { changeOption, closeCardConfig }: TypeCardConfig ) 
               fontSize={25} 
               className='w-12'
             /> 
-            Changue to Fahrenheit
+            <span className='text-[16px]'>Changue to Fahrenheit</span>
           </button>
         </motion.li>
         <motion.li 
@@ -91,7 +91,7 @@ export const CardConfig = ( { changeOption, closeCardConfig }: TypeCardConfig ) 
                 />
               </div>
             </div>
-            <span>Changue to Theme</span>
+            <span className='text-[16px]'>Changue to Theme</span>
           </div>
         </motion.li>
       </motion.ul>

@@ -17,7 +17,6 @@ export const App = () => {
       >
         <main className='mx-auto md:max-w-7xl max-w-[95%]'>
           <WeatherApp />
-          <MainFooter />
         </main>
       </motion.div>
     </AnimatePresence>

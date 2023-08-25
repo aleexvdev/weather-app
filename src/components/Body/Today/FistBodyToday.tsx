@@ -3,7 +3,6 @@ import { DetailsBodyToday } from './DetailsBodyToday'
 import { formatDate, formatUnixTimestamp, kelvinToCelsius, secondsToTimezone } from '../../../utils/functions'
 import { TypeFetchWeather } from '../../../types/Type_Weather'
 import { useTheme } from '../../../context/ThemeContext/ThemeContext'
-import { SunriseSunsetStatus } from '../../WeatherComponents/SunriseSunsetStatus'
 import { CardMoreData } from '../../Items/CardMoreData'
 
 interface TypeCardMoreData {

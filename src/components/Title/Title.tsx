@@ -53,7 +53,7 @@ export const Title = ( { changeOption }: TypeTitle ) => {
       </div>
       {showCardConfig && (
         <div
-          className='absolute right-3 top-12 z-50 w-72 sm:w-36 md:hidden'
+          className='absolute right-3 top-12 z-50 w-64 sm:w-36 md:hidden'
         >
           <CardConfig changeOption={changeOption} closeCardConfig={closeCardConfig} />
         </div>
