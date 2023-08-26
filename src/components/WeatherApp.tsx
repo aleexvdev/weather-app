@@ -68,9 +68,9 @@ export const WeatherApp = () => {
   }
 
   return (
-    <section className={`h-[100%] md:min-h-[680px] ${backgroundContent} rounded-3xl mt-10 md:mb-0 mb-10`}>
-      <div className='flex md:flex-row w-full flex-col h-full'>
-        <div className='md:w-[28%]'>
+    <section className={`max-h-[100%] md:max-h-[680px] ${backgroundContent} rounded-3xl my-10 md:mb-0 lg:my-10`}>
+      <div className='flex md:flex-row w-full flex-col sm:flex-col h-full'>
+        <div className='md:w-[28%] lg:w-[27%]'>
           <div className='md:my-6 md:mx-5 mx-3 my-5'>
             <Title changeOption={changeOption} />
             <FormWeather selectedCity={selectedCity} />
@@ -78,7 +78,7 @@ export const WeatherApp = () => {
             <Footer />
           </div>
         </div>
-        <div className='md:w-[72%]'>
+        <div className='md:w-[72%] lg:w-[73%]'>
           <div className='my-6 mx-5'>
             <HeaderWeather activeTabIndex={activeTabIndex} onTabChange={handleTabChange} changeOption={changeOption} optionDegree={optionDegree} />
             {
