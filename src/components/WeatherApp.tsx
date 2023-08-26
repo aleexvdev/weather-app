@@ -90,7 +90,7 @@ export const WeatherApp = () => {
               ? 
               <BodyWeather content={activeTabIndex} currentWeather={currentWeather} forescastWeather={forescastWeather} optionDegree={optionDegree} /> 
               : 
-              <Loading name={nameapp} style={styleapp} />
+              <Loading name={nameapp} styles={styleapp} />
             }
             
           </div>

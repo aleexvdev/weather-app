@@ -8,6 +8,13 @@ interface TypeWeekBody {
   optionDegree: string;
 }
 
+/* const styleapp = {
+  width: '830px',
+  height: '582px',
+  marginTop: '5px',
+  // ... other style properties
+}; */
+
 export const WeekBody = ( { forescast, optionDegree }: TypeWeekBody ) => {
 
   const styleapp = 'md:w-[830px] md:h-[582px] mt-5';
@@ -20,7 +27,7 @@ export const WeekBody = ( { forescast, optionDegree }: TypeWeekBody ) => {
   }, [forescast]);
 
   if (!forescastWeatherData) {
-    return <Loading name={nameapp} style={styleapp} />
+    return <Loading name={nameapp} styles={styleapp} />
   }
 
   return (

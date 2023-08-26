@@ -20,7 +20,7 @@ export const TodayBody = ( { data, forescast, optionDegree }: TypeTodayBody ) =>
   }, [data]);
 
   if (!data) {
-    return <Loading name={nameapp} style={styleapp} />
+    return <Loading name={nameapp} styles={styleapp} />
   }
 
   return (

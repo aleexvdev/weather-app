@@ -37,7 +37,7 @@ export const BodyWeather = ({ content, currentWeather, forescastWeather, optionD
   const styleapp = "md:w-[830px] md:h-[582px] mt-5";
   const nameapp = content === 0 ? "today's data" : "week data" ;
   const [isLoading, setIsLoading] = useState(true);
-  const [renderComponent, setRenderComponent] = useState<JSX.Element | null>(<Loading name={nameapp} style={styleapp} />);
+  const [renderComponent, setRenderComponent] = useState<JSX.Element | null>(<Loading name={nameapp} styles={styleapp} />);
   
   useEffect(() => {
     setIsLoading(true);
@@ -63,6 +63,6 @@ export const BodyWeather = ({ content, currentWeather, forescastWeather, optionD
     };
   }, [content, currentWeather, forescastWeather, optionDegree]);
 
-  return isLoading ? <Loading name={nameapp} style={styleapp} /> : renderComponent;
+  return isLoading ? <Loading name={nameapp} styles={styleapp} /> : renderComponent;
 }
 
