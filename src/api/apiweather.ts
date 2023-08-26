@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from 'axios';
 import { TypeFetchWeather, TypeForescastWeather, TypeLocation, TypeWeatherResponseData } from '../types/Type_Weather';
 // import { BASE_URL, API_KEY } from '../../env-config.js';
 
-const BASE_URL='http://api.openweathermap.org'
+const BASE_URL='https://api.openweathermap.org'
 const API_KEY='58826343e1e6a9c581865022fb62cfa3'
 
 export const fetchLocations = async (searchCity: string, limit: number): Promise<TypeLocation[]> => {
