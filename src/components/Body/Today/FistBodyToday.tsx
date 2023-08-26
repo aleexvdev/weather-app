@@ -71,8 +71,8 @@ export const FistBodyToday = ( { data, optionDegree }: TypeFirstBody ) => {
           </div>
           <div className='col-span-2 row-span-1 md:col-span-1 md:row-span-1 order-3 md:order-2'>
             <div className='w-full h-full flex items-center justify-center'>
-              <div className='flex items-center justify-center px-2 md:px-5'>
-                <img src={`../../assets/svg/${icon}.svg`} alt={description} className='inline-block h-56 w-56 md:h-56 md:w-56' />
+              <div className='flex items-center justify-center px-2 md:px-0'>
+                <img src={`../../assets/svg/${icon}.svg`} alt={description} className='inline-block h-56 w-56 md:h-56 md:w-60' />
               </div>
             </div>
           </div>

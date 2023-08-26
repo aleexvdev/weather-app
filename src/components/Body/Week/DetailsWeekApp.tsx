@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { WeatherListItem } from '../../../types/Type_Weather';
 import { ForescastTodays } from '../../WeatherComponents/ForescastTodays';
 import { ContentInfoWeek } from './ContentInfoWeek';
+import { Loading } from '../../Loader/Loading';
 
 interface TypeDetailsWeekApp {
   data: WeatherListItem[];
@@ -46,7 +47,6 @@ export const DetailsWeekApp = ( { data, optionDegree }: TypeDetailsWeekApp ) => 
     }
     return false;
   });
-
 
   return (  
     <div className='w-full h-full'>

@@ -7,7 +7,6 @@ export const App = () => {
   const { backgroundMain } = useTheme();
 
   return (
-    <AnimatePresence>
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -18,6 +17,5 @@ export const App = () => {
           <WeatherApp />
         </main>
       </motion.div>
-    </AnimatePresence>
   );
 }

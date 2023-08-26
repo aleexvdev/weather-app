@@ -9,6 +9,7 @@ import { fetchWeatherDataAll } from '../api/apiweather'
 import { Title } from './Title/Title'
 import { useTheme } from '../context/ThemeContext/ThemeContext'
 import { datacountries } from '../data/dataCountries'
+import { Loading } from './Loader/Loading'
 
 export const WeatherApp = () => {
 
@@ -67,6 +68,9 @@ export const WeatherApp = () => {
     setOptionDegree(value);
   }
 
+  const styleapp = 'md:w-[830px] md:h-[582px] mt-5';
+  const nameapp = 'data';
+
   return (
     <section className={`max-h-[100%] md:max-h-full ${backgroundContent} rounded-3xl my-10 md:mb-0 lg:my-10`}>
       <div className='flex md:flex-row w-full flex-col sm:flex-col h-full'>
@@ -79,10 +83,14 @@ export const WeatherApp = () => {
           </div>
         </div>
         <div className='md:w-[72%] lg:w-[73%]'>
-          <div className='my-6 mx-5'>
+          <div className='my-5 mx-5'>
             <HeaderWeather activeTabIndex={activeTabIndex} onTabChange={handleTabChange} changeOption={changeOption} optionDegree={optionDegree} />
             {
-              currentWeather && forescastWeather ? <BodyWeather content={activeTabIndex} currentWeather={currentWeather} forescastWeather={forescastWeather} optionDegree={optionDegree} /> : <div>loading</div>
+              currentWeather && forescastWeather 
+              ? 
+              <BodyWeather content={activeTabIndex} currentWeather={currentWeather} forescastWeather={forescastWeather} optionDegree={optionDegree} /> 
+              : 
+              <Loading name={nameapp} style={styleapp} />
             }
             
           </div>

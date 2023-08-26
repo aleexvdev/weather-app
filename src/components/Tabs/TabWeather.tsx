@@ -10,11 +10,12 @@ interface TypePropsTab {
 
 export const TabWeather = ({ tabs, activeTabIndex, onTabChange }: TypePropsTab) => {
 
-  const { isDarkMode } = useTheme();//80C6FF
+  const { isDarkMode } = useTheme();
 
   return (
     <div className='w-full'>
       <div className='flex flex-row items-center justify-start h-10 gap-5'>
+
         {tabs.map((tab, index) => (
           <motion.div
             key={index}
@@ -42,4 +43,6 @@ export const TabWeather = ({ tabs, activeTabIndex, onTabChange }: TypePropsTab) 
       </div>
     </div>
   )
-}
+} 
+
+

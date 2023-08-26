@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { TypeForescastWeather, WeatherListItem } from '../../../types/Type_Weather';
 import { DetailsWeekApp } from './DetailsWeekApp';
+import { Loading } from '../../Loader/Loading';
 
 interface TypeWeekBody {
   forescast: TypeForescastWeather;
@@ -9,6 +10,9 @@ interface TypeWeekBody {
 
 export const WeekBody = ( { forescast, optionDegree }: TypeWeekBody ) => {
 
+  const styleapp = 'md:w-[830px] md:h-[582px] mt-5';
+  const nameapp = 'data';
+
   const [forescastWeatherData, setForescastWeatherData] = useState<WeatherListItem[]>(); 
 
   useEffect(() => {
@@ -16,9 +20,8 @@ export const WeekBody = ( { forescast, optionDegree }: TypeWeekBody ) => {
   }, [forescast]);
 
   if (!forescastWeatherData) {
-    return <div>dddd</div>
+    return <Loading name={nameapp} style={styleapp} />
   }
-
 
   return (
     <div>

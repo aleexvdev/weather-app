@@ -11,9 +11,44 @@
   user-select: none;
   font-family: 'Open Sans', sans-serif;
 }
+.svg-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 
-/* body {
-  background-color: #cbe5ff;
-  color: black;
+/* Rotación de la línea circular */
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Parpadeo de las líneas interiores */
+@keyframes blink {
+  0%, 50%, 100% { opacity: 0.2; }
+  25%, 75% { opacity: 1; }
+}
+
+@keyframes rotatePath {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+/* Aplicar la animación de rotación */
+/* .svg-container svg path:first-child {
+  animation: rotate 6s linear infinite;
+} */
+
+/* Aplicar la animación de parpadeo */
+.svg-container svg path:not(:first-child) {
+  animation: blink 1.5s ease-in-out infinite;
+}
+
+/* .svg-container svg path:nth-child(2) {
+  animation: rotatePath 6s linear infinite reverse;
+  transform-origin: center;
+  transform-box: fill-box; 
 } */
 
