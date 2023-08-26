@@ -137,7 +137,7 @@ export const FormWeather = ( { selectedCity }: TypeFormProps ) => {
                         alt={city.country} className="h-2 w-4"
                       />
                     </div>
-                    <span className='w-full'>{city.name}, {city.state}</span>
+                    <span className='w-full'>{city.name}, {city.country}</span>
                   </div>
                   
                 </motion.div>

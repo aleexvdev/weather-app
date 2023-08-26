@@ -26,7 +26,7 @@ export const WeatherApp = () => {
       const randomLocation: TypeLocation = datacountries[randomIndex];
       setCityData(randomLocation);
     }
-  }, []);
+  }, [cityData]);
   
 
   useEffect(() => {
@@ -68,7 +68,7 @@ export const WeatherApp = () => {
   }
 
   return (
-    <section className={`max-h-[100%] md:max-h-[680px] ${backgroundContent} rounded-3xl my-10 md:mb-0 lg:my-10`}>
+    <section className={`max-h-[100%] md:max-h-full ${backgroundContent} rounded-3xl my-10 md:mb-0 lg:my-10`}>
       <div className='flex md:flex-row w-full flex-col sm:flex-col h-full'>
         <div className='md:w-[28%] lg:w-[27%]'>
           <div className='md:my-6 md:mx-5 mx-3 my-5'>
