@@ -36,7 +36,7 @@ export const Title = ( { changeOption }: TypeTitle ) => {
       <div className='flex flex-row items-center justify-between md:justify-center'>
         <div className='flex flex-row items-center justify-center'>
           <img src={'../../../assets/svg/logo.svg'} alt={'Whater App'} className='inline-block h-16 w-16' />
-          <h1 className={`md:text-2xl text-3xl font-bold ${textColorContent}`}>Whather App</h1>
+          <h1 className={`md:text-2xl text-3xl font-bold ${textColorContent}`}>Weather App</h1>
         </div>
         <motion.button
           whileHover={{ scale: 1.1 }}
